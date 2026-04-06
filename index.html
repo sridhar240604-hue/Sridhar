@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sridhar – Portfolio</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+ 
+        :root {
+            --bg: #0d0d0d;
+            --nav-bg: rgba(20, 20, 20, .9);
+            --border: #222;
+            --text: #fff;
+            --muted: #888;
+            --red: #e03b2e;
+            --orange: #e07e2e;
+            --green: #3ecf5f;
+        }
+ 
+        html {
+            scroll-behavior: smooth
+        }
+ 
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            overflow-x: hidden
+        }
+ 
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: linear-gradient(rgba(255, 255, 255, .025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .025) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0
+        }
+ 
+        .glow-red {
+            position: fixed;
+            top: -140px;
+            left: -140px;
+            width: 480px;
+            height: 480px;
+            background: radial-gradient(circle, rgba(224, 59, 46, .25) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0
+        }
+ 
+        .glow-blue {
+            position: fixed;
+            bottom: -160px;
+            right: -120px;
+            width: 520px;
+            height: 520px;
+            background: radial-gradient(circle, rgba(50, 60, 200, .10) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0
+        }
+ 
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--nav-bg);
+            border: 1px solid #2a2a2a;
+            border-radius: 50px;
+            padding: 7px 10px;
+            white-space: nowrap;
+            backdrop-filter: blur(20px);
+            animation: slideDown .7s cubic-bezier(.22, 1, .36, 1) both;
+            transition: box-shadow .3s
+        }
+ 
+        nav.scrolled {
+            box-shadow: 0 8px 40px rgba(0, 0, 0, .8);
+            background: rgba(10, 10, 10, .98)
+        }
+ 
+        .nav-logo {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 6px;
+            cursor: pointer;
+            transition: transform .3s, box-shadow .3s;
+            flex-shrink: 0
+        }
+ 
+        .nav-logo:hover {
+            transform: rotate(15deg) scale(1.1);
+            box-shadow: 0 0 16px rgba(224, 59, 46, .5)
+        }
+ 
+        .nav-logo svg {
+            width: 16px;
+            height: 16px
+        }
+ 
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            list-style: none
+        }
+ 
+        .nav-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 7px 14px;
+            border-radius: 40px;
+            transition: color .2s, background .2s
+        }
+ 
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #fff;
+            background: rgba(255, 255, 255, .08)
+        }
+ 
+        .nav-contact {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 8px 20px;
+            border: 1.5px solid #555;
+            border-radius: 40px;
+            margin-left: 4px;
+            transition: background .2s, border-color .2s, transform .2s
+        }
+ 
+        .nav-contact:hover {
+            background: rgba(255, 255, 255, .08);
+            border-color: #888;
+            transform: translateY(-1px)
+        }
+ 
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+            margin-left: 6px
+        }
+ 
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: #ccc;
+            border-radius: 2px;
+            transition: transform .3s, opacity .3s
+        }
+ 
+        .hamburger.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg)
+        }
+ 
+        .hamburger.open span:nth-child(2) {
+            opacity: 0
+        }
+ 
+        .hamburger.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg)
+        }
+ 
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 76px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(16, 16, 16, .97);
+            border: 1px solid #2a2a2a;
+            border-radius: 16px;
+            padding: 12px;
+            z-index: 199;
+            min-width: 200px;
+            backdrop-filter: blur(20px)
+        }
+ 
+        .mobile-menu.show {
+            display: block;
+            animation: fadeDown .2s ease
+        }
+ 
+        .mobile-menu a {
+            display: block;
+            color: #ccc;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 10px 16px;
+            border-radius: 10px;
+            transition: background .2s, color .2s
+        }
+ 
+        .mobile-menu a:hover {
+            background: rgba(255, 255, 255, .07);
+            color: #fff
+        }
+ 
+        section {
+            position: relative;
+            z-index: 1
+        }
+ 
+        /* Hero */
+        #home {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 110px 24px 80px
+        }
+ 
+        .avatar-wrap {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 20px;
+            animation: floatUp .8s cubic-bezier(.22, 1, .36, 1) both;
+            cursor: pointer
+        }
+ 
+        .avatar-ring {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            padding: 3px;
+            background: conic-gradient(from 0deg, #c9813a, #f5c97a, #e03b2e, #c9813a);
+            transition: transform .4s cubic-bezier(.22, 1, .36, 1), box-shadow .4s
+        }
+ 
+        .avatar-wrap:hover .avatar-ring {
+            transform: scale(1.1);
+            box-shadow: 0 0 28px rgba(224, 126, 46, .45)
+        }
+ 
+        .avatar-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #1a1a1a;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+ 
+        .avatar-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block
+        }
+ 
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 4px var(--green) }
+            50% { box-shadow: 0 0 14px var(--green); opacity: .7 }
+        }
+ 
+        .greeting {
+            font-size: 17px;
+            font-weight: 600;
+            color: #ddd;
+            margin-bottom: 16px;
+            animation: floatUp .8s .2s cubic-bezier(.22, 1, .36, 1) both
+        }
+ 
+        .headline {
+            font-size: clamp(44px, 8vw, 92px);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -.03em;
+            margin-bottom: 28px;
+            animation: floatUp .8s .3s cubic-bezier(.22, 1, .36, 1) both
+        }
+ 
+        .headline em {
+            font-family: 'DM Serif Display', serif;
+            font-style: italic;
+            font-weight: 400;
+            letter-spacing: -.01em;
+            color: rgba(255, 255, 255, .55)
+        }
+ 
+        .btn-row {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: floatUp .8s .46s cubic-bezier(.22, 1, .36, 1) both
+        }
+ 
+        .btn-ghost {
+            color: #888;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 13px 18px;
+            border-radius: 40px;
+            border: 1.5px solid transparent;
+            transition: color .2s, border-color .2s, transform .2s
+        }
+ 
+        .btn-ghost:hover {
+            color: #ddd;
+            border-color: #444;
+            transform: translateY(-2px)
+        }
+ 
+        .scroll-hint {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            margin-top: 60px;
+            animation: floatUp .8s .6s cubic-bezier(.22, 1, .36, 1) both
+        }
+ 
+        .scroll-hint span {
+            font-size: 11px;
+            color: #444;
+            letter-spacing: .1em;
+            text-transform: uppercase
+        }
+ 
+        .scroll-line {
+            width: 1px;
+            height: 36px;
+            background: linear-gradient(to bottom, #555, transparent);
+            animation: scrollPulse 2s ease-in-out infinite
+        }
+ 
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 1; transform: scaleY(1) }
+            50% { opacity: .3; transform: scaleY(.5) }
+        }
+ 
+        /* MARQUEE */
+        .marquee-wrap {
+            overflow: hidden;
+            padding: 32px 0;
+            border-top: 1px solid #1e1e1e;
+            border-bottom: 1px solid #1e1e1e
+        }
+ 
+        .marquee-track {
+            display: flex;
+            gap: 60px;
+            animation: marquee 18s linear infinite;
+            width: max-content
+        }
+ 
+        .marquee-track:hover {
+            animation-play-state: paused
+        }
+ 
+        .logo-item {
+            font-size: 18px;
+            font-weight: 700;
+            color: #555;
+            letter-spacing: -.02em;
+            white-space: nowrap;
+            transition: color .1s;
+            cursor: default;
+            flex-shrink: 0
+        }
+ 
+        .logo-item:hover {
+            color: #ccc
+        }
+ 
+        @keyframes marquee {
+            from { transform: translateX(0) }
+            to { transform: translateX(-50%) }
+        }
+ 
+        /* ABOUT */
+        #about {
+            padding: 100px 40px
+        }
+ 
+        .about-inner {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+ 
+        .about-inner h2 {
+            font-size: clamp(32px, 4vw, 52px);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            letter-spacing: -.02em
+        }
+ 
+        .about-inner p {
+            font-size: 16px;
+            color: #888;
+            line-height: 1.75
+        }
+ 
+        /* ── SKILLS SECTION ── */
+        #gallery {
+            padding: 100px 40px;
+        }
+ 
+        .section-title {
+            text-align: center;
+            font-size: clamp(32px, 4vw, 52px);
+            font-weight: 700;
+            letter-spacing: -.02em;
+            margin-bottom: 12px;
+        }
+ 
+        .section-sub {
+            text-align: center;
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 56px;
+        }
+ 
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+ 
+        .tool-card {
+            background: #111;
+            border: 1px solid #1e1e1e;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: border-color .3s, transform .3s cubic-bezier(.22, 1, .36, 1), box-shadow .3s;
+            text-align: left;
+        }
+ 
+        .tool-card:hover {
+            border-color: #2e2e2e;
+            transform: translateY(-4px) scale(1.015);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, .7);
+        }
+ 
+        .tool-card.open {
+            border-color: #333;
+            transform: translateY(0) scale(1);
+        }
+ 
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 22px 24px;
+        }
+ 
+        .card-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, .06);
+        }
+ 
+        .card-info h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 3px
+        }
+ 
+        .card-info p {
+            font-size: 13px;
+            color: #555
+        }
+ 
+        .card-chevron {
+            margin-left: auto;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #1e1e1e;
+            border: 1px solid #2a2a2a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform .35s cubic-bezier(.22, 1, .36, 1), background .2s;
+            flex-shrink: 0;
+        }
+ 
+        .tool-card.open .card-chevron {
+            transform: rotate(180deg);
+            background: #2a2a2a;
+        }
+ 
+        .card-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .5s cubic-bezier(.22, 1, .36, 1), opacity .35s;
+            opacity: 0;
+        }
+ 
+        .tool-card.open .card-body {
+            max-height: 700px;
+            opacity: 1;
+        }
+ 
+        .card-divider {
+            height: 1px;
+            background: #1a1a1a;
+            margin: 0 24px
+        }
+ 
+        .tools-list {
+            padding: 20px 24px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+ 
+        .tool-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            background: #0d0d0d;
+            border: 1px solid #1e1e1e;
+            border-radius: 14px;
+            transition: border-color .2s, background .2s, transform .2s;
+            animation: none;
+        }
+ 
+        .tool-card.open .tool-item {
+            animation: itemSlideIn .4s cubic-bezier(.22, 1, .36, 1) both;
+        }
+ 
+        .tool-card.open .tool-item:nth-child(1) { animation-delay: .05s }
+        .tool-card.open .tool-item:nth-child(2) { animation-delay: .10s }
+        .tool-card.open .tool-item:nth-child(3) { animation-delay: .15s }
+        .tool-card.open .tool-item:nth-child(4) { animation-delay: .20s }
+ 
+        @keyframes itemSlideIn {
+            from { opacity: 0; transform: translateY(10px) }
+            to { opacity: 1; transform: translateY(0) }
+        }
+ 
+        .tool-item:hover {
+            border-color: #2e2e2e;
+            background: #131313;
+            transform: translateX(4px);
+        }
+ 
+        .tool-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+ 
+        .tool-meta { flex: 1 }
+ 
+        .tool-meta h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #ddd;
+            margin-bottom: 2px
+        }
+ 
+        .tool-meta p {
+            font-size: 12px;
+            color: #555
+        }
+ 
+        .tool-level {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+ 
+        .level-expert { background: #1a2e1a; color: #3ecf5f; border: 1px solid #1e3a1e }
+        .level-advanced { background: #1a1a2e; color: #6e8fff; border: 1px solid #1e1e3a }
+        .level-intermediate { background: #2e1a0a; color: #e07e2e; border: 1px solid #3a200a }
+ 
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateX(-50%) translateY(-20px) }
+            to { opacity: 1; transform: translateX(-50%) translateY(0) }
+        }
+ 
+        @keyframes floatUp {
+            from { opacity: 0; transform: translateY(30px) }
+            to { opacity: 1; transform: translateY(0) }
+        }
+ 
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-8px) }
+            to { opacity: 1; transform: translateY(0) }
+        }
+ 
+        @media (max-width: 700px) {
+            .tools-grid { grid-template-columns: 1fr }
+            .nav-links, .nav-contact { display: none }
+            .hamburger { display: flex }
+            #about { padding: 80px 24px }
+            #gallery { padding: 80px 20px }
+        }
+    </style>
+</head>
+ 
+<body>
+ 
+    <div class="glow-red"></div>
+    <div class="glow-blue"></div>
+ 
+    <!-- NAV -->
+    <nav id="navbar">
+        <div class="nav-logo">
+            <svg viewBox="0 0 24 24"><text x="12" y="19" text-anchor="middle" font-size="18" font-weight="700"
+                    font-family="DM Sans,sans-serif" fill="white">S</text></svg>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#gallery">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+        </ul>
+        <a href="#contact" class="nav-contact">Contact</a>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#home" onclick="closeMenu()">Home</a>
+        <a href="#about" onclick="closeMenu()">About</a>
+        <a href="#gallery" onclick="closeMenu()">Skills</a>
+        <a href="#projects" onclick="closeMenu()">Projects</a>
+        <a href="#contact" onclick="closeMenu()">Contact</a>
+    </div>
+ 
+    <!-- ══ HERO ══ -->
+    <section id="home">
+        <div class="avatar-wrap">
+            <div class="avatar-ring">
+                <div class="avatar-inner">
+                    <img src="C:\Users\SRIDHAR M\OneDrive\Pictures\Certificates\1753409339741.jpg" alt="Sridhar"
+                        onerror="this.style.display='none';this.parentElement.innerHTML='<svg viewBox=\'0 0 60 60\' fill=\'rgba(255,255,255,.8)\'><circle cx=\'30\' cy=\'22\' r=\'11\'/><path d=\'M8 56c0-12 10-19 22-19s22 7 22 19\' fill=\'rgba(255,255,255,.8)\'/></svg>'" />
+                </div>
+            </div>
+        </div>
+        <p class="greeting">Hello, I'm Sridhar</p>
+        <h1 class="headline">
+            Not just user <em>friendly!</em><br>
+            Effortlessly <em>simple.</em>
+        </h1>
+        <div class="btn-row">
+            <a href="#" class="btn-ghost">View Resume</a>
+        </div>
+        <div class="scroll-hint"><span>scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+ 
+    <!-- ══ MARQUEE ══ -->
+    <div class="marquee-wrap">
+        <div class="marquee-track">
+            <span class="logo-item">Figma</span>
+            <span class="logo-item">Adobe Photoshop</span>
+            <span class="logo-item">Canva</span>
+            <span class="logo-item">Capcut</span>
+            <span class="logo-item">HTML</span>
+            <span class="logo-item">CSS</span>
+            <span class="logo-item">Bootstrap</span>
+            <span class="logo-item">JavaScript</span>
+            <span class="logo-item">Figma</span>
+            <span class="logo-item">Adobe Photoshop</span>
+            <span class="logo-item">Canva</span>
+            <span class="logo-item">Capcut</span>
+            <span class="logo-item">HTML</span>
+            <span class="logo-item">CSS</span>
+            <span class="logo-item">Bootstrap</span>
+            <span class="logo-item">JavaScript</span>
+        </div>
+    </div>
+ 
+    <!-- ══ ABOUT ══ -->
+    <section id="about">
+        <div class="about-inner">
+            <h2>Hi, I'm Sridhar.<br>I design clean, simple, and user-friendly digital experiences</h2>
+            <p>I focus on making apps easy to use, visually appealing, and accessible for everyone.</p>
+        </div>
+    </section>
+ 
+    <!-- ══ SKILLS ══ -->
+    <section id="gallery">
+        <h2 class="section-title">Skills</h2>
+        <p class="section-sub">Elevated skills, exceptional outcomes.</p>
+ 
+        <div class="tools-grid">
+ 
+            <!-- Card 1: UI/UX Tools -->
+            <div class="tool-card" onclick="toggleCard(this)">
+                <div class="card-header">
+                    <div class="card-icon" style="background:linear-gradient(135deg,#1a0a2e,#2d1060);">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                            <rect x="4" y="4" width="9" height="9" rx="2" fill="#a78bfa" />
+                            <rect x="15" y="4" width="9" height="9" rx="2" fill="#7c3aed" />
+                            <rect x="4" y="15" width="9" height="9" rx="2" fill="#7c3aed" />
+                            <circle cx="19.5" cy="19.5" r="4.5" fill="#c4b5fd" />
+                        </svg>
+                    </div>
+                    <div class="card-info">
+                        <h3>UI/UX Tools</h3>
+                        <p>Design &amp; Prototyping</p>
+                    </div>
+                    <div class="card-chevron">
+                        <svg viewBox="0 0 14 14" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="2,4 7,10 12,4" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-divider"></div>
+                    <div class="tools-list">
+                        <div class="tool-item">
+                            <div class="tool-logo" style="background:#1e1e1e;border:1px solid #2a2a2a;">
+                                <svg width="24" height="24" viewBox="0 0 38 57" fill="none">
+                                    <path d="M19 28.5C19 23.8 22.8 20 27.5 20C32.2 20 36 23.8 36 28.5C36 33.2 32.2 37 27.5 37C22.8 37 19 33.2 19 28.5Z" fill="#1ABCFE" />
+                                    <path d="M2 47.5C2 42.8 5.8 39 10.5 39H19V47.5C19 52.2 15.2 56 10.5 56C5.8 56 2 52.2 2 47.5Z" fill="#0ACF83" />
+                                    <path d="M19 2V20H27.5C32.2 20 36 16.2 36 11.5C36 6.8 32.2 3 27.5 3L19 2Z" fill="#FF7262" />
+                                    <path d="M2 11.5C2 16.2 5.8 20 10.5 20H19V3H10.5C5.8 3 2 6.8 2 11.5Z" fill="#F24E1E" />
+                                    <path d="M2 28.5C2 33.2 5.8 37 10.5 37H19V20H10.5C5.8 20 2 23.8 2 28.5Z" fill="#FF7262" />
+                                </svg>
+                            </div>
+                            <div class="tool-meta">
+                                <h4>Figma</h4>
+                                <p>UI Design &amp; Prototyping</p>
+                            </div>
+                            <span class="tool-level level-expert">Expert</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-logo" style="background:#001424;border:1px solid #002030;">
+                                <svg width="26" height="26" viewBox="0 0 26 26">
+                                    <rect width="26" height="26" rx="5" fill="#001e36" />
+                                    <text x="4" y="20" font-size="16" font-weight="800" font-family="Arial" fill="#31A8FF">Ps</text>
+                                </svg>
+                            </div>
+                            <div class="tool-meta">
+                                <h4>Adobe Photoshop</h4>
+                                <p>Image Editing &amp; Compositing</p>
+                            </div>
+                            <span class="tool-level level-expert">Expert</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-logo" style="background:#2a1800;border:1px solid #3a2000;">
+                                <svg width="26" height="26" viewBox="0 0 26 26">
+                                    <rect width="26" height="26" rx="5" fill="#330000" />
+                                    <text x="4" y="20" font-size="16" font-weight="800" font-family="Arial" fill="#FF9A00">Ai</text>
+                                </svg>
+                            </div>
+                            <div class="tool-meta">
+                                <h4>Adobe Illustrator</h4>
+                                <p>Vector Design &amp; Illustration</p>
+                            </div>
+                            <span class="tool-level level-advanced">Advanced</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-logo" style="background:#001a2e;border:1px solid #002a40;">
+                                <svg width="26" height="26" viewBox="0 0 38 38" fill="none">
+                                    <circle cx="19" cy="19" r="19" fill="#00C4CC" />
+                                    <path d="M19 8C13 8 8 13 8 19C8 25 13 30 19 30C22 30 24.5 28.8 26.3 26.9L23.6 24.2C22.5 25.4 21 26.1 19 26.1C15.1 26.1 12 22.9 12 19C12 15.1 15.1 11.9 19 11.9C21 11.9 22.7 12.7 23.9 14.1L26.5 11.5C24.7 9.5 22.1 8 19 8Z" fill="white" />
+                                </svg>
+                            </div>
+                            <div class="tool-meta">
+                                <h4>Canva</h4>
+                                <p>Quick Design &amp; Social Media</p>
+                            </div>
+                            <span class="tool-level level-intermediate">Intermediate</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- Card 2: Development -->
+            <div class="tool-card" onclick="toggleCard(this)">
+                <div class="card-header">
+                    <div class="card-icon" style="background:linear-gradient(135deg,#0a1a2e,#0d3060);">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                            <polyline points="7,9 2,14 7,19" stroke="#60a5fa" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                            <polyline points="21,9 26,14 21,19" stroke="#60a5fa" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                            <line x1="17" y1="6" x2="11" y2="22" stroke="#93c5fd" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <div class="card-info">
+                        <h3>Development</h3>
+                        <p>Web Technologies</p>
+                    </div>
+                    <div class="card-chevron">
+                        <svg viewBox="0 0 14 14" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="2,4 7,10 12,4" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-divider"></div>
+                    <div class="tools-list">
+                        <div class="tool-item">
+                            <div class="tool-logo" style="background:#2a0d00;border:1px solid #3a1500;">
+                                <svg width="26" height="26" viewBox="0 0 512 512" fill="none">
+                                    <path d="M64 32L96 448L256 496L416 448L448 32H64Z" fill="#E34F26" />
+                                    <path d="M256 466L389 432L416 96H256V466Z" fill="#EF652A" />
+                                    <path d="M256 208H183L178 150H256V93H116L128 228H256V208Z" fill="white" />
+                                    <path d="M256 340L256 282H199L194 228H256V208H183L178 150H256V93H116L128 228L137 340L256 375V340Z" fill="#EBEBEB" />
+                                    <path d="M256 282V340L312 323L319 245H256V282Z" fill="white" />
+                                    <path d="M256 208V228H319L312 323L256 340V375L375 340L384 228L394 93H256V150H331L326 208H256Z" fill="white" />
+                                </svg>
+                            </div>
+                            <div class="tool-meta">
+                                <h4>HTML</h4>
+                                <p>Markup &amp; Structure</p>
+                            </div>
+                            <span class="tool-level level-advanced">Advanced</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-logo" style="background:#001428;border:1px solid #001e38;">
+                                <svg width="26" height="26" viewBox="0 0 512 512" fill="none">
+                                    <path d="M64 32L96 448L256 496L416 448L448 32H64Z" fill="#1572B6" />
+                                    <path d="M256 466L389 432L416 96H256V466Z" fill="#33A9DC" />
+                                    <path d="M256 208H183L185 245H256V208Z" fill="white" />
+                                    <path d="M256 93H116L122 150H256V93Z" fill="white" />
+                                    <path d="M256 340L256 282H205L208 323L256 337V340Z" fill="#EBEBEB" />
+                                    <path d="M194 282H256V245H183L186 282H194Z" fill="#EBEBEB" />
+                                    <path d="M256 208V150H331L326 208H256Z" fill="white" />
+                                    <path d="M256 282V340L312 323L319 245H256V282Z" fill="white" />
+                                    <path d="M256 93V150H394L389 93H256Z" fill="white" />
+                                </svg>
+                            </div>
+                            <div class="tool-meta">
+                                <h4>CSS</h4>
+                                <p>Styling &amp; Animations</p>
+                            </div>
+                            <span class="tool-level level-advanced">Advanced</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-logo" style="background:#1a1a00;border:1px solid #2a2a00;">
+                                <svg width="26" height="26" viewBox="0 0 26 26">
+                                    <rect width="26" height="26" rx="3" fill="#F7DF1E" />
+                                    <text x="3" y="21" font-size="15" font-weight="800" font-family="Arial" fill="#000000">JS</text>
+                                </svg>
+                            </div>
+                            <div class="tool-meta">
+                                <h4>JavaScript</h4>
+                                <p>Interactivity &amp; Logic</p>
+                            </div>
+                            <span class="tool-level level-intermediate">Intermediate</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- Card 3: Media & Video -->
+            <div class="tool-card" onclick="toggleCard(this)">
+                <div class="card-header">
+                    <div class="card-icon" style="background:linear-gradient(135deg,#1a0a0a,#3a0a18);">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                            <rect x="2" y="6" width="18" height="16" rx="3" fill="#fc2c55" opacity=".9" />
+                            <path d="M20 10l6-4v16l-6-4V10Z" fill="#ff6b8a" />
+                            <circle cx="10" cy="14" r="3" fill="white" opacity=".9" />
+                        </svg>
+                    </div>
+                    <div class="card-info">
+                        <h3>Media &amp; Video</h3>
+                        <p>Editing &amp; Content</p>
+                    </div>
+                    <div class="card-chevron">
+                        <svg viewBox="0 0 14 14" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="2,4 7,10 12,4" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-divider"></div>
+                    <div class="tools-list">
+                        <div class="tool-item">
+                            <div class="tool-logo" style="background:#0a0a0a;border:1px solid #222;">
+                                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                                    <rect width="28" height="28" rx="7" fill="#000" />
+                                    <circle cx="9" cy="9" r="3.5" stroke="white" stroke-width="1.8" fill="none" />
+                                    <circle cx="9" cy="19" r="3.5" stroke="white" stroke-width="1.8" fill="none" />
+                                    <line x1="11.8" y1="10.8" x2="22" y2="22" stroke="white" stroke-width="1.8" stroke-linecap="round" />
+                                    <line x1="11.8" y1="17.2" x2="22" y2="7" stroke="white" stroke-width="1.8" stroke-linecap="round" />
+                                    <circle cx="9" cy="9" r="1.5" fill="white" />
+                                    <circle cx="9" cy="19" r="1.5" fill="white" />
+                                </svg>
+                            </div>
+                            <div class="tool-meta">
+                                <h4>CapCut</h4>
+                                <p>Video Editing &amp; Effects</p>
+                            </div>
+                            <span class="tool-level level-advanced">Advanced</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-logo" style="background:#1a0028;border:1px solid #2a0040;">
+                                <svg width="26" height="26" viewBox="0 0 26 26">
+                                    <rect width="26" height="26" rx="5" fill="#00005b" />
+                                    <text x="3" y="20" font-size="15" font-weight="800" font-family="Arial" fill="#9999FF">Pr</text>
+                                </svg>
+                            </div>
+                            <div class="tool-meta">
+                                <h4>Adobe Premiere</h4>
+                                <p>Professional Video Editing</p>
+                            </div>
+                            <span class="tool-level level-intermediate">Intermediate</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- Card 4: UX Research -->
+            <div class="tool-card" onclick="toggleCard(this)">
+                <div class="card-header">
+                    <div class="card-icon" style="background:linear-gradient(135deg,#0a1a10,#0d3020);">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                            <circle cx="14" cy="12" r="6" stroke="#34d399" stroke-width="2" fill="none" />
+                            <circle cx="14" cy="12" r="2.5" fill="#34d399" />
+                            <line x1="14" y1="18" x2="14" y2="26" stroke="#34d399" stroke-width="2" stroke-linecap="round" />
+                            <line x1="10" y1="26" x2="18" y2="26" stroke="#34d399" stroke-width="2" stroke-linecap="round" />
+                            <path d="M6 22 Q4 14 8 10" stroke="#6ee7b7" stroke-width="1.5" stroke-linecap="round" fill="none" opacity=".6" />
+                            <path d="M22 22 Q24 14 20 10" stroke="#6ee7b7" stroke-width="1.5" stroke-linecap="round" fill="none" opacity=".6" />
+                        </svg>
+                    </div>
+                    <div class="card-info">
+                        <h3>UX Research</h3>
+                        <p>Research &amp; Testing</p>
+                    </div>
+                    <div class="card-chevron">
+                        <svg viewBox="0 0 14 14" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="2,4 7,10 12,4" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-divider"></div>
+                    <div class="tools-list">
+                        <div class="tool-item">
+                            <div class="tool-logo" style="background:#0a1a14;border:1px solid #0d2a1c;">
+                                <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                                    <circle cx="10" cy="9" r="4" stroke="#34d399" stroke-width="1.8" fill="none" />
+                                    <circle cx="18" cy="9" r="4" stroke="#34d399" stroke-width="1.8" fill="none" opacity=".6" />
+                                    <path d="M2 22c0-4 4-7 8-7s8 3 8 7" stroke="#34d399" stroke-width="1.8" stroke-linecap="round" fill="none" />
+                                    <path d="M16 16c2-1 4 0 6 3" stroke="#6ee7b7" stroke-width="1.5" stroke-linecap="round" fill="none" opacity=".7" />
+                                </svg>
+                            </div>
+                            <div class="tool-meta">
+                                <h4>User Research</h4>
+                                <p>Interviews &amp; Surveys</p>
+                            </div>
+                            <span class="tool-level level-expert">Expert</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-logo" style="background:#0a1420;border:1px solid #0d1e30;">
+                                <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                                    <rect x="2" y="2" width="22" height="22" rx="3" stroke="#60a5fa" stroke-width="1.8" fill="none" />
+                                    <rect x="5" y="5" width="7" height="7" rx="1.5" stroke="#60a5fa" stroke-width="1.5" fill="none" />
+                                    <rect x="14" y="5" width="7" height="3" rx="1" stroke="#93c5fd" stroke-width="1.4" fill="none" />
+                                    <rect x="14" y="10" width="7" height="2" rx="1" stroke="#93c5fd" stroke-width="1.4" fill="none" />
+                                    <rect x="5" y="15" width="16" height="2" rx="1" stroke="#bfdbfe" stroke-width="1.3" fill="none" opacity=".8" />
+                                    <rect x="5" y="19" width="11" height="2" rx="1" stroke="#bfdbfe" stroke-width="1.3" fill="none" opacity=".6" />
+                                </svg>
+                            </div>
+                            <div class="tool-meta">
+                                <h4>Wireframing</h4>
+                                <p>Low &amp; High Fidelity</p>
+                            </div>
+                            <span class="tool-level level-expert">Expert</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-logo" style="background:#140a20;border:1px solid #1e0a30;">
+                                <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                                    <rect x="4" y="4" width="18" height="14" rx="3" stroke="#a78bfa" stroke-width="1.8" fill="none" />
+                                    <line x1="13" y1="18" x2="13" y2="23" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" />
+                                    <line x1="9" y1="23" x2="17" y2="23" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" />
+                                    <polyline points="8,11 11,14 18,8" stroke="#c4b5fd" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                                </svg>
+                            </div>
+                            <div class="tool-meta">
+                                <h4>Usability Testing</h4>
+                                <p>Testing &amp; Validation</p>
+                            </div>
+                            <span class="tool-level level-advanced">Advanced</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ 
+        </div><!-- /tools-grid -->
+    </section>
+ 
+    <script>
+        const navbar = document.getElementById('navbar');
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-links a');
+ 
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 40);
+            let current = '';
+            sections.forEach(s => {
+                if (window.scrollY >= s.offsetTop - 120) current = s.id;
+            });
+            navLinks.forEach(a => {
+                a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+            });
+        });
+ 
+        function toggleMenu() {
+            document.getElementById('hamburger').classList.toggle('open');
+            document.getElementById('mobileMenu').classList.toggle('show');
+        }
+        function closeMenu() {
+            document.getElementById('hamburger').classList.remove('open');
+            document.getElementById('mobileMenu').classList.remove('show');
+        }
+ 
+        function toggleCard(card) {
+            const isOpen = card.classList.contains('open');
+            document.querySelectorAll('.tool-card').forEach(c => c.classList.remove('open'));
+            if (!isOpen) card.classList.add('open');
+        }
+    </script>
+ 
+</body>
+ 
+</html>
