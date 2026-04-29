@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sridhar – UI/UX Designer</title>
+    <title>SridharUI/UX Designer</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Instrument+Serif:ital@0;1&family=Satoshi:wght@300;400;500;700&display=swap"
         rel="stylesheet">
@@ -23,9 +23,9 @@
             --grid: rgba(255, 255, 255, 0.025);
             --card-bg: rgba(255, 255, 255, 0.04);
             --card-border: rgba(255, 255, 255, 0.08);
-            --text: #ffffff;
+            --text: #fff;
             --muted: #777;
-            --muted2: #aaa;
+            --muted2: #aaa
         }
 
         html {
@@ -36,7 +36,52 @@
             background: var(--bg);
             color: var(--text);
             font-family: 'Satoshi', sans-serif;
-            overflow-x: hidden
+            overflow-x: hidden;
+            cursor: none
+        }
+
+        #cursor-ring {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 22px;
+            height: 22px;
+            border: 1.5px solid rgba(224, 48, 48, 0.85);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, border-color 0.3s, background 0.3s
+        }
+
+        #cursor-dot {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 4px;
+            background: var(--red);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s
+        }
+
+        body:has(a:hover) #cursor-ring,
+        body:has(button:hover) #cursor-ring,
+        body:has(.skill-card:hover) #cursor-ring {
+            width: 36px;
+            height: 36px;
+            background: rgba(224, 48, 48, 0.08);
+            border-color: var(--red)
+        }
+
+        #bg-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none
         }
 
         body::before {
@@ -46,7 +91,7 @@
             background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
             background-size: 80px 80px;
             pointer-events: none;
-            z-index: 0;
+            z-index: 1
         }
 
         .blob {
@@ -55,7 +100,7 @@
             filter: blur(130px);
             pointer-events: none;
             z-index: 0;
-            opacity: 0.4
+            opacity: 0.3
         }
 
         .blob-red {
@@ -83,7 +128,6 @@
             transform: translate(-50%, -50%)
         }
 
-        /* NAV */
         nav {
             position: fixed;
             top: 20px;
@@ -97,7 +141,7 @@
             backdrop-filter: blur(24px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 50px;
-            padding: 7px 10px;
+            padding: 7px 10px
         }
 
         .nav-logo {
@@ -112,7 +156,7 @@
             font-size: 15px;
             color: white;
             margin-right: 6px;
-            flex-shrink: 0;
+            flex-shrink: 0
         }
 
         nav a {
@@ -122,7 +166,7 @@
             font-weight: 500;
             padding: 6px 15px;
             border-radius: 50px;
-            transition: all 0.25s;
+            transition: all 0.25s
         }
 
         nav a:hover {
@@ -147,7 +191,7 @@
 
         section {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -156,7 +200,6 @@
             padding: 100px 40px 80px
         }
 
-        /* ── HOME ── */
         #home {
             text-align: center;
             gap: 0;
@@ -174,13 +217,12 @@
             display: grid;
             place-items: center;
             animation: fadeDown 0.8s ease both;
-            box-shadow: 0 0 40px rgba(224, 48, 48, 0.25);
+            box-shadow: 0 0 40px rgba(224, 48, 48, 0.25)
         }
 
-        .hero-profile svg {
-            width: 66px;
-            height: 66px;
-            opacity: 0.5
+        .image {
+            width: 100%;
+            height: 100%
         }
 
         .hello-tag {
@@ -192,7 +234,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 8px
         }
 
         .hello-tag::before,
@@ -208,14 +250,14 @@
             font-size: clamp(44px, 7.5vw, 96px);
             font-weight: 900;
             line-height: 1.03;
-            animation: fadeUp 1s 0.2s ease both;
+            animation: fadeUp 1s 0.2s ease both
         }
 
         .home-headline em {
             font-family: 'Instrument Serif', serif;
             font-style: italic;
             font-weight: 400;
-            color: var(--muted);
+            color: var(--muted)
         }
 
         .home-sub {
@@ -224,14 +266,14 @@
             margin-top: 26px;
             max-width: 500px;
             line-height: 1.7;
-            animation: fadeUp 1s 0.35s ease both;
+            animation: fadeUp 1s 0.35s ease both
         }
 
         .view-resume {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            margin-top: 36px;
+            margin-top: 10px;
             color: var(--muted2);
             font-size: 13px;
             text-decoration: none;
@@ -239,7 +281,7 @@
             border-radius: 50px;
             padding: 10px 24px;
             transition: all 0.3s;
-            animation: fadeUp 1s 0.5s ease both;
+            animation: fadeUp 1s 0.5s ease both
         }
 
         .view-resume:hover {
@@ -248,7 +290,6 @@
             background: rgba(255, 255, 255, 0.05)
         }
 
-        /* TICKER */
         .ticker-wrap {
             width: 100%;
             overflow: hidden;
@@ -259,7 +300,7 @@
             bottom: 60px;
             left: 0;
             z-index: 2;
-            background: rgba(8, 8, 8, 0.6);
+            background: rgba(8, 8, 8, 0.6)
         }
 
         .ticker {
@@ -296,7 +337,7 @@
             font-size: 10px;
             letter-spacing: 2.5px;
             text-transform: uppercase;
-            animation: fadeIn 1.5s 1s ease both;
+            animation: fadeIn 1.5s 1s ease both
         }
 
         .scroll-hint::after {
@@ -304,10 +345,9 @@
             width: 1px;
             height: 40px;
             background: linear-gradient(to bottom, rgba(255, 255, 255, 0.35), transparent);
-            animation: scrollLine 2s 1.5s ease infinite;
+            animation: scrollLine 2s 1.5s ease infinite
         }
 
-        /* ABOUT */
         #about {
             text-align: center
         }
@@ -318,14 +358,14 @@
             letter-spacing: 3px;
             color: var(--red);
             margin-bottom: 14px;
-            font-weight: 600;
+            font-weight: 600
         }
 
         .section-title {
             font-family: 'Cabinet Grotesk', sans-serif;
             font-size: clamp(36px, 5vw, 68px);
             font-weight: 900;
-            margin-bottom: 14px;
+            margin-bottom: 14px
         }
 
         .section-sub {
@@ -338,14 +378,13 @@
             max-width: 600px;
             font-size: 17px;
             line-height: 1.85;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.7)
         }
 
         .about-text strong {
             color: white
         }
 
-        /* ── SKILLS ── */
         #skills {
             gap: 0
         }
@@ -356,7 +395,7 @@
             gap: 14px;
             width: 100%;
             max-width: 880px;
-            margin-top: 36px;
+            margin-top: 36px
         }
 
         .skill-card {
@@ -367,10 +406,10 @@
             display: flex;
             align-items: center;
             gap: 16px;
-            cursor: pointer;
+            cursor: none;
             transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
+            overflow: hidden
         }
 
         .skill-card::before {
@@ -379,7 +418,7 @@
             inset: 0;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), transparent);
             opacity: 0;
-            transition: opacity 0.3s;
+            transition: opacity 0.3s
         }
 
         .skill-card:hover::before {
@@ -398,7 +437,7 @@
             display: grid;
             place-items: center;
             flex-shrink: 0;
-            font-size: 22px;
+            font-size: 22px
         }
 
         .icon-purple {
@@ -440,327 +479,562 @@
             transform: rotate(180deg)
         }
 
-        .skill-expand {
+        .skill-panel {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.45s ease, padding 0.3s ease;
+            transition: max-height 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             width: 100%;
-            grid-column: 1 / -1;
+            grid-column: 1/-1
+        }
+
+        .skill-panel.open {
+            max-height: 600px
+        }
+
+        .skill-panel-inner {
+            padding: 24px;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--card-border);
             border-radius: 16px;
+            margin-top: 2px
         }
 
-        .skill-expand.open {
-            max-height: 260px
-        }
-
-        .skill-expand-inner {
-            padding: 22px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px
-        }
-
-        .skill-tag {
-            padding: 7px 16px;
-            border-radius: 50px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.8);
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            transition: all 0.2s;
-        }
-
-        .skill-tag:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2)
-        }
-
-        .skill-tag img {
-            width: 18px;
-            height: 18px;
-            border-radius: 3px;
-            object-fit: contain
-        }
-
-        /* ── PROJECTS ── */
-        #projects {
-            gap: 0
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 22px;
-            max-width: 920px;
-            width: 100%;
-            margin-top: 36px;
-        }
-
-        .proj-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 22px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            position: relative;
-            transform-style: preserve-3d;
-        }
-
-        .proj-card:hover {
-            transform: translateY(-8px) rotateX(2deg) rotateY(-1deg) scale(1.01);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 40px rgba(224, 48, 48, 0.08);
-        }
-
-        .proj-thumb-placeholder {
-            width: 100%;
-            aspect-ratio: 16/9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 12px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .proj-thumb-placeholder::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.5));
-        }
-
-        .proj-thumb-placeholder img {
-            width: 64px;
-            height: 64px;
-            object-fit: contain;
-            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
-            position: relative;
-            z-index: 1
-        }
-
-        .proj-thumb-placeholder span {
+        .skill-panel-inner h4 {
+            font-family: 'Cabinet Grotesk', sans-serif;
             font-size: 12px;
-            color: rgba(255, 255, 255, 0.5);
-            position: relative;
-            z-index: 1;
-            letter-spacing: 1px;
-            text-transform: uppercase
-        }
-
-        .proj-thumb-placeholder .icon-text {
-            font-size: 52px;
-            font-family: monospace;
-            font-weight: 700;
-            position: relative;
-            z-index: 1
-        }
-
-        .proj-card-badge {
-            position: absolute;
-            top: 14px;
-            right: 14px;
-            background: rgba(0, 0, 0, 0.75);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 50px;
-            padding: 4px 13px;
-            font-size: 11px;
-            backdrop-filter: blur(10px);
-            letter-spacing: 0.5px;
-            z-index: 2;
-        }
-
-        .proj-body {
-            padding: 20px 22px 22px
-        }
-
-        .proj-label {
-            font-size: 11px;
-            text-transform: uppercase;
             letter-spacing: 2px;
-            color: var(--muted);
-            margin-bottom: 7px
-        }
-
-        .proj-name {
-            font-family: 'Cabinet Grotesk', sans-serif;
-            font-weight: 800;
-            font-size: 19px;
-            margin-bottom: 7px
-        }
-
-        .proj-desc {
-            font-size: 13px;
-            color: var(--muted);
-            line-height: 1.65
-        }
-
-        .proj-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 14px;
-            font-size: 12px;
-            color: var(--muted2);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-            padding-bottom: 2px;
-            transition: all 0.2s;
-        }
-
-        .proj-card:hover .proj-cta {
-            color: white;
-            border-color: white
-        }
-
-        /* PROJECT MODAL */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(16px);
-            padding: 20px;
-        }
-
-        .modal-overlay.open {
-            display: flex
-        }
-
-        .modal {
-            background: #0e0e0e;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 28px;
-            max-width: 800px;
-            width: 100%;
-            max-height: 88vh;
-            overflow-y: auto;
-            animation: modalIn 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        /* 3D Project canvas area */
-        .proj-canvas {
-            width: 100%;
-            aspect-ratio: 16/9;
-            position: relative;
-            overflow: hidden;
-            border-radius: 28px 28px 0 0;
-        }
-
-        .proj-canvas canvas {
-            display: block;
-            width: 100% !important;
-            height: 100% !important
-        }
-
-        .modal-body {
-            padding: 30px 34px 34px
-        }
-
-        .modal-close {
-            float: right;
-            background: rgba(255, 255, 255, 0.07);
-            border: none;
-            color: white;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 17px;
-            display: grid;
-            place-items: center;
-            margin-left: 12px;
-            transition: background 0.2s;
-        }
-
-        .modal-close:hover {
-            background: rgba(255, 255, 255, 0.14)
-        }
-
-        .modal-tool-tag {
-            display: inline-block;
-            padding: 4px 14px;
-            border-radius: 50px;
-            font-size: 11px;
-            font-weight: 700;
-            margin-bottom: 14px;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            color: var(--red);
+            margin-bottom: 16px;
+            font-weight: 700
         }
 
-        .modal-title {
-            font-family: 'Cabinet Grotesk', sans-serif;
-            font-size: 30px;
-            font-weight: 900;
-            margin-bottom: 12px
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 12px
         }
 
-        .modal-desc {
-            color: rgba(255, 255, 255, 0.68);
-            line-height: 1.75;
-            font-size: 15px
-        }
-
-        .modal-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 22px
-        }
-
-        .modal-tag {
-            padding: 5px 14px;
-            border-radius: 50px;
+        .tool-item {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 12px;
-            color: var(--muted);
+            border-radius: 14px;
+            padding: 14px 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.25s;
+            text-align: center
         }
 
-        /* CONTACT */
+        .tool-item:hover {
+            background: rgba(255, 255, 255, 0.09);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px)
+        }
+
+        .tool-item img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4))
+        }
+
+        .tool-item .tool-emoji {
+            font-size: 28px;
+            line-height: 1
+        }
+
+        .tool-item span {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500
+        }
+
         #contact {
             text-align: center
         }
 
-        .contact-links {
+        .linkedin-card {
+            margin-top: 40px;
+            background: linear-gradient(135deg, rgba(10, 102, 194, 0.15), rgba(10, 102, 194, 0.05));
+            border: 1px solid rgba(10, 102, 194, 0.4);
+            border-radius: 20px;
+            padding: 36px 44px;
+            max-width: 400px;
+            width: 100%;
             display: flex;
-            gap: 14px;
-            margin-top: 36px;
-            flex-wrap: wrap;
-            justify-content: center
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden
         }
 
-        .contact-link {
+        .linkedin-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(10, 102, 194, 0.18) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.35s
+        }
+
+        .linkedin-card:hover::before {
+            opacity: 1
+        }
+
+        .linkedin-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(10, 102, 194, 0.8);
+            box-shadow: 0 20px 60px rgba(10, 102, 194, 0.25), 0 0 0 1px rgba(10, 102, 194, 0.2)
+        }
+
+        .linkedin-icon {
+            width: 56px;
+            height: 56px;
+            background: #0a66c2;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            font-size: 28px;
+            box-shadow: 0 8px 24px rgba(10, 102, 194, 0.4)
+        }
+
+        .linkedin-card-name {
+            font-family: 'Cabinet Grotesk', sans-serif;
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: -0.3px
+        }
+
+        .linkedin-card-role {
+            font-size: 13px;
+            color: var(--muted2);
+            letter-spacing: 0.3px
+        }
+
+        .linkedin-card-btn {
+            margin-top: 8px;
+            background: #0a66c2;
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 10px 28px;
+            border-radius: 50px;
+            letter-spacing: 0.5px;
+            transition: background 0.2s
+        }
+
+        .linkedin-card:hover .linkedin-card-btn {
+            background: #1a80d9
+        }
+
+        .linkedin-divider {
+            width: 40px;
+            height: 1px;
+            background: rgba(10, 102, 194, 0.35)
+        }
+
+        #projects {
+            gap: 0;
+            text-align: center;
+            overflow: hidden;
+            padding-bottom: 60px;
+            min-height: unset;
+            padding-top: 100px
+        }
+
+        .carousel-track-wrap {
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: visible;
+            cursor: grab;
+            padding: 30px 60px 20px;
+            position: relative;
+            z-index: 2;
+            scrollbar-width: none
+        }
+
+        .carousel-track-wrap::-webkit-scrollbar {
+            display: none
+        }
+
+        .carousel-track-wrap:active {
+            cursor: grabbing
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 22px;
+            width: max-content
+        }
+
+        .ps-card {
+            flex-shrink: 0;
+            width: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            background: var(--card-bg);
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.3s, box-shadow 0.4s;
+            position: relative;
+            cursor: pointer
+        }
+
+        .ps-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            border-color: rgba(224, 48, 48, 0.35);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(224, 48, 48, 0.1)
+        }
+
+        .ps-card img {
+            width: 100%;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease
+        }
+
+        .ps-card:hover img {
+            transform: scale(1.05)
+        }
+
+        .ps-card-label {
+            padding: 12px 16px;
+            font-size: 12px;
+            color: var(--muted);
+            letter-spacing: 0.5px;
+            border-top: 1px solid var(--card-border);
+            background: rgba(0, 0, 0, 0.4)
+        }
+
+        .ps-card-num {
+            position: absolute;
+            top: 12px;
+            left: 14px;
+            font-family: 'Cabinet Grotesk', sans-serif;
+            font-size: 11px;
+            font-weight: 800;
+            background: rgba(224, 48, 48, 0.85);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 50px;
+            letter-spacing: 1px
+        }
+
+        .carousel-hint {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 13px 26px;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 50px;
+            gap: 8px;
+            justify-content: center;
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 16px;
+            letter-spacing: 1px
+        }
+
+        .carousel-hint::before {
+            content: '←'
+        }
+
+        .carousel-hint::after {
+            content: '→'
+        }
+
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 99998;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(12px);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column
+        }
+
+        #lightbox.active {
+            display: flex
+        }
+
+        #lightbox-img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+            animation: lbIn 0.3s cubic-bezier(0.23, 1, 0.32, 1) both
+        }
+
+        @keyframes lbIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9)
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1)
+            }
+        }
+
+        #lightbox-label {
+            margin-top: 16px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.5px
+        }
+
+        #lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-size: 28px;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: color 0.2s, transform 0.2s;
+            background: none;
+            border: none;
+            line-height: 1
+        }
+
+        #lightbox-close:hover {
             color: white;
+            transform: scale(1.15)
+        }
+
+        #lightbox-nav {
+            position: absolute;
+            bottom: 24px;
+            display: flex;
+            gap: 12px;
+            align-items: center
+        }
+
+        .lb-arrow {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            color: white;
+            font-size: 16px;
+            transition: all 0.2s;
+            background: rgba(255, 255, 255, 0.05)
+        }
+
+        .lb-arrow:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4)
+        }
+
+        #lb-counter {
+            font-size: 12px;
+            color: var(--muted);
+            min-width: 50px;
+            text-align: center
+        }
+
+        footer {
+            position: relative;
+            z-index: 2;
+            border-top: 1px solid var(--card-border);
+            background: rgba(8, 8, 8, 0.95);
+            padding: 60px 40px 30px
+        }
+
+        .footer-inner {
+            max-width: 960px;
+            margin: 0 auto
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+            margin-bottom: 48px;
+            flex-wrap: wrap
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 10px
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .footer-logo-dot {
+            width: 36px;
+            height: 36px;
+            background: var(--red);
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-family: 'Cabinet Grotesk', sans-serif;
+            font-weight: 900;
+            font-size: 16px;
+            color: white
+        }
+
+        .footer-logo-name {
+            font-family: 'Cabinet Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: -0.3px
+        }
+
+        .footer-tagline {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.6;
+            max-width: 240px
+        }
+
+        .footer-links-group {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap
+        }
+
+        .footer-col h5 {
+            font-family: 'Cabinet Grotesk', sans-serif;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            color: var(--red);
+            margin-bottom: 16px;
+            font-weight: 700
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px
+        }
+
+        .footer-col ul li a {
+            color: var(--muted);
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
-            transition: all 0.25s;
+            transition: color 0.2s
         }
 
-        .contact-link:hover {
-            background: rgba(255, 255, 255, 0.09);
-            border-color: rgba(255, 255, 255, 0.22);
+        .footer-col ul li a:hover {
+            color: white
+        }
+
+        .footer-divider {
+            width: 100%;
+            height: 1px;
+            background: var(--card-border);
+            margin-bottom: 28px
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: var(--muted);
+            letter-spacing: 0.3px
+        }
+
+        .footer-copy span {
+            color: var(--red)
+        }
+
+        .footer-socials {
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .footer-social-link {
+            height: 34px;
+            border: 1px solid var(--card-border);
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 13px;
+            color: var(--muted);
+            transition: all 0.25s;
+            padding: 0 14px;
+            gap: 6px;
+            font-weight: 600;
+            white-space: nowrap
+        }
+
+        .footer-social-link:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            color: white;
+            background: rgba(255, 255, 255, 0.06);
             transform: translateY(-2px)
         }
 
-        /* ANIMATIONS */
+        .footer-social-link.linkedin-link {
+            border-color: rgba(10, 102, 194, 0.4);
+            color: #5da8f5
+        }
+
+        .footer-social-link.linkedin-link:hover {
+            border-color: #0a66c2;
+            color: white;
+            background: rgba(10, 102, 194, 0.15)
+        }
+
+        .footer-status {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 12px;
+            color: var(--muted)
+        }
+
+        .footer-status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+            animation: pulse-green 2s ease infinite
+        }
+
+        @keyframes pulse-green {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1)
+            }
+
+            50% {
+                opacity: 0.6;
+                transform: scale(1.3)
+            }
+        }
+
         @keyframes fadeUp {
             from {
                 opacity: 0;
@@ -820,30 +1094,6 @@
             }
         }
 
-        @keyframes modalIn {
-            from {
-                opacity: 0;
-                transform: scale(0.93) translateY(20px)
-            }
-
-            to {
-                opacity: 1;
-                transform: none
-            }
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0)
-            }
-
-            50% {
-                transform: translateY(-8px)
-            }
-        }
-
         .reveal {
             opacity: 0;
             transform: translateY(28px);
@@ -869,26 +1119,48 @@
         }
 
         @media(max-width:640px) {
-
-            .skills-grid,
-            .projects-grid {
+            .skills-grid {
                 grid-template-columns: 1fr
             }
 
             nav a:not(.btn-contact):not([data-keep]) {
                 display: none
             }
+
+            .tool-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr))
+            }
+
+            .linkedin-card {
+                padding: 28px 24px
+            }
+
+            .footer-top {
+                flex-direction: column;
+                gap: 32px
+            }
+
+            .footer-links-group {
+                gap: 32px
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px
+            }
         }
     </style>
 </head>
 
 <body>
-
+    <div id="cursor-ring"></div>
+    <div id="cursor-dot"></div>
+    <canvas id="bg-canvas"></canvas>
     <div class="blob blob-red"></div>
     <div class="blob blob-blue"></div>
     <div class="blob blob-mid"></div>
 
-    <!-- NAV -->
     <nav>
         <div class="nav-logo">S</div>
         <a href="#home" class="active" data-keep>Home</a>
@@ -898,27 +1170,19 @@
         <a href="#contact" class="btn-contact">Contact</a>
     </nav>
 
-    <!-- HOME -->
     <section id="home">
         <div class="hero-profile">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="12" cy="8" r="4" fill="rgba(255,255,255,0.45)" />
-                <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="rgba(255,255,255,0.28)" />
-            </svg>
+            <img src="1753409339741.jpg" alt="" class="image">
         </div>
-
         <p class="hello-tag">Hello, I'm Sridhar</p>
-
         <h1 class="home-headline">
             Not just user <em>friendly!</em><br>
             Effortlessly <em>simple.</em>
         </h1>
-
         <p class="home-sub">I focus on making apps easy to use, visually appealing, and accessible for everyone.</p>
-        <a href="#" class="view-resume">View Resume ↗</a>
-
+        <a href="./resume.html" class="view-resume">View Resume ↗</a>
         <div class="ticker-wrap">
-            <div class="ticker" id="ticker">
+            <div class="ticker">
                 <span>Canva</span><span class="ticker-dot">●</span><span>CapCut</span><span class="ticker-dot">●</span>
                 <span>HTML</span><span class="ticker-dot">●</span><span>CSS</span><span class="ticker-dot">●</span>
                 <span>Bootstrap</span><span class="ticker-dot">●</span><span>JavaScript</span><span
@@ -937,11 +1201,9 @@
                     class="ticker-dot">●</span>
             </div>
         </div>
-
         <div class="scroll-hint">SCROLL</div>
     </section>
 
-    <!-- ABOUT -->
     <section id="about">
         <div class="section-label reveal">About Me</div>
         <h2 class="section-title reveal">Who I Am</h2>
@@ -954,15 +1216,11 @@
         </p>
     </section>
 
-    <!-- SKILLS -->
     <section id="skills">
         <div class="section-label reveal">What I Know</div>
         <h2 class="section-title reveal">Skills</h2>
         <p class="section-sub reveal">Elevated skills, exceptional outcomes.</p>
-
         <div class="skills-grid reveal">
-
-            <!-- UI/UX Tools -->
             <div class="skill-card" data-skill="uiux" onclick="toggleSkill(this,'uiux')">
                 <div class="skill-icon icon-purple">🎨</div>
                 <div class="skill-info">
@@ -971,8 +1229,6 @@
                 </div>
                 <div class="chevron">▾</div>
             </div>
-
-            <!-- Development -->
             <div class="skill-card" data-skill="dev" onclick="toggleSkill(this,'dev')">
                 <div class="skill-icon icon-blue" style="font-family:monospace;font-size:16px;font-weight:700">&lt;/&gt;
                 </div>
@@ -982,51 +1238,47 @@
                 </div>
                 <div class="chevron">▾</div>
             </div>
-
-            <!-- Expand: UI/UX -->
-            <div class="skill-expand" id="expand-uiux">
-                <div class="skill-expand-inner">
-                    <div class="skill-tag">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" alt="Figma"> Figma
+            <div class="skill-panel" id="panel-uiux">
+                <div class="skill-panel-inner">
+                    <h4>Tools &amp; Technologies</h4>
+                    <div class="tool-grid">
+                        <div class="tool-item"><img
+                                src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg"
+                                alt="Figma"><span>Figma</span></div>
+                        <div class="tool-item"><img src="https://cdn-icons-png.flaticon.com/128/5968/5968520.png"
+                                alt="Photoshop"><span>Photoshop</span></div>
+                        <div class="tool-item"><img src="https://cdn-icons-png.flaticon.com/128/5968/5968472.png"
+                                alt="Illustrator"><span>Illustrator</span></div>
+                        <div class="tool-item"><img src="https://cdn-icons-png.flaticon.com/128/16758/16758081.png"
+                                alt="Canva"><span>Canva</span></div>
+                        <div class="tool-item">
+                            <div class="tool-emoji">🖌️</div><span>Wireframing</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-emoji">📱</div><span>Prototyping</span>
+                        </div>
                     </div>
-                    <div class="skill-tag">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Adobe_Photoshop_CC_icon.svg/512px-Adobe_Photoshop_CC_icon.svg.png"
-                            alt="Photoshop"> Adobe Photoshop
-                    </div>
-                    <div class="skill-tag">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Adobe_Illustrator_CC_icon.svg/512px-Adobe_Illustrator_CC_icon.svg.png"
-                            alt="Illustrator"> Illustrator
-                    </div>
-                    <div class="skill-tag">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Canva_Logo.svg/250px-Canva_Logo.svg.png"
-                            alt="Canva"> Canva
-                    </div>
-                    <div class="skill-tag">🖌️ Wireframing</div>
-                    <div class="skill-tag">📱 Prototyping</div>
                 </div>
             </div>
-
-            <!-- Expand: Dev -->
-            <div class="skill-expand" id="expand-dev">
-                <div class="skill-expand-inner">
-                    <div class="skill-tag">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/512px-HTML5_logo_and_wordmark.svg.png"
-                            alt="HTML5"> HTML5
+            <div class="skill-panel" id="panel-dev">
+                <div class="skill-panel-inner">
+                    <h4>Technologies</h4>
+                    <div class="tool-grid">
+                        <div class="tool-item"><img src="https://cdn-icons-png.flaticon.com/128/1051/1051277.png"
+                                alt="HTML5"><span>HTML5</span></div>
+                        <div class="tool-item"><img src="https://cdn-icons-png.flaticon.com/128/732/732190.png"
+                                alt="CSS3"><span>CSS3</span></div>
+                        <div class="tool-item"><img src="https://cdn-icons-png.flaticon.com/128/5968/5968292.png"
+                                alt="JavaScript"><span>JavaScript</span></div>
+                        <div class="tool-item">
+                            <div class="tool-emoji">📦</div><span>Bootstrap</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-emoji">📐</div><span>Responsive</span>
+                        </div>
                     </div>
-                    <div class="skill-tag">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/512px-CSS3_logo_and_wordmark.svg.png"
-                            alt="CSS3"> CSS3
-                    </div>
-                    <div class="skill-tag">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/512px-Unofficial_JavaScript_logo_2.svg.png"
-                            alt="JS"> JavaScript
-                    </div>
-                    <div class="skill-tag">📦 Bootstrap</div>
-                    <div class="skill-tag">📐 Responsive Design</div>
                 </div>
             </div>
-
-            <!-- UX Research -->
             <div class="skill-card" data-skill="ux" onclick="toggleSkill(this,'ux')">
                 <div class="skill-icon icon-green">🔍</div>
                 <div class="skill-info">
@@ -1035,8 +1287,6 @@
                 </div>
                 <div class="chevron">▾</div>
             </div>
-
-            <!-- Media & Video -->
             <div class="skill-card" data-skill="media" onclick="toggleSkill(this,'media')">
                 <div class="skill-icon icon-red">📹</div>
                 <div class="skill-info">
@@ -1045,473 +1295,276 @@
                 </div>
                 <div class="chevron">▾</div>
             </div>
-
-            <!-- Expand: UX Research -->
-            <div class="skill-expand" id="expand-ux">
-                <div class="skill-expand-inner">
-                    <div class="skill-tag">👤 User Interviews</div>
-                    <div class="skill-tag">🧪 Usability Testing</div>
-                    <div class="skill-tag">🗺️ User Journey Mapping</div>
-                    <div class="skill-tag">📊 Heuristic Evaluation</div>
-                </div>
-            </div>
-
-            <!-- Expand: Media -->
-            <div class="skill-expand" id="expand-media">
-                <div class="skill-expand-inner">
-                    <div class="skill-tag">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/CapCut_logo.svg/120px-CapCut_logo.svg.png"
-                            alt="CapCut"> CapCut
+            <div class="skill-panel" id="panel-ux">
+                <div class="skill-panel-inner">
+                    <h4>Research Methods</h4>
+                    <div class="tool-grid">
+                        <div class="tool-item">
+                            <div class="tool-emoji">👤</div><span>User Interviews</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-emoji">🧪</div><span>Usability Testing</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-emoji">🗺️</div><span>Journey Mapping</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-emoji">📊</div><span>Heuristic Evaluation</span>
+                        </div>
                     </div>
-                    <div class="skill-tag">🎬 Video Editing</div>
-                    <div class="skill-tag">📸 Photo Editing</div>
-                    <div class="skill-tag">✍️ Content Creation</div>
                 </div>
             </div>
-
+            <div class="skill-panel" id="panel-media">
+                <div class="skill-panel-inner">
+                    <h4>Tools &amp; Skills</h4>
+                    <div class="tool-grid">
+                        <div class="tool-item"><img
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh5loN0Qj9vGO-bMknVGbR-k6S-lSJDtPIBw&s"
+                                alt="CapCut"><span>CapCut</span></div>
+                        <div class="tool-item">
+                            <div class="tool-emoji">🎬</div><span>Video Editing</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-emoji">📸</div><span>Photo Editing</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-emoji">✍️</div><span>Content Creation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- PROJECTS -->
+    <!-- PROJECTS – All images included -->
     <section id="projects">
         <div class="section-label reveal">What I've Built</div>
         <h2 class="section-title reveal">Projects</h2>
-        <p class="section-sub reveal">Work I've crafted with care.</p>
-
-        <div class="projects-grid reveal">
-
-            <!-- Photoshop -->
-            <div class="proj-card" onclick="openModal('photoshop')">
-                <div class="proj-thumb-placeholder" style="background:linear-gradient(135deg,#1a0530,#0d1a4a,#1a0010)">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Adobe_Photoshop_CC_icon.svg/512px-Adobe_Photoshop_CC_icon.svg.png"
-                        alt="Photoshop">
-                    <span>Photoshop Project</span>
+        <div class="carousel-track-wrap reveal" id="carousel">
+            <div class="carousel-track">
+                
+                <div class="ps-card" onclick="openLightbox(1)">
+                    <span class="ps-card-num">PS · 01</span>
+                    <img src="119.png" alt="Porsche Ad">
+                    <div class="ps-card-label">Porsche – Automotive Poster</div>
                 </div>
-                <div class="proj-card-badge">Photoshop</div>
-                <div class="proj-body">
-                    <div class="proj-label">Graphic Design</div>
-                    <div class="proj-name">Visual Composition</div>
-                    <div class="proj-desc">Creative poster & branding design with advanced layer techniques and photo
-                        manipulation.</div>
-                    <div class="proj-cta">View Project →</div>
+                <div class="ps-card" onclick="openLightbox(2)">
+                    <span class="ps-card-num">PS · 02</span>
+                    <img src="bata.jpg" alt="Bata Sneaker Ad">
+                    <div class="ps-card-label">Bata Black Sneaker – Product Ad</div>
                 </div>
+                <div class="ps-card" onclick="openLightbox(3)">
+                    <span class="ps-card-num">PS · 03</span>
+                    <img src="biriyani.png" alt="Spicy Biriyani">
+                    <div class="ps-card-label">Spicy Biriyani – Restaurant Poster</div>
+                </div>
+                <div class="ps-card" onclick="openLightbox(4)">
+                    <span class="ps-card-num">PS · 04</span>
+                    <img src="BMW.png" alt="BMW Gran Coupe">
+                    <div class="ps-card-label">BMW 8 Series Gran Coupe – Ad</div>
+                </div>
+               
+                <div class="ps-card" onclick="openLightbox(5)">
+                    <span class="ps-card-num">PS · 05</span>
+                    <img src="faashion.jpg" alt="Fashion Festival">
+                    <div class="ps-card-label">Wfash Fashion Festival – Event Poster</div>
+                </div>
+                <div class="ps-card" onclick="openLightbox(6)">
+                    <span class="ps-card-num">PS · 06</span>
+                    <img src="headphone.png" alt="Headphone Ad">
+                    <div class="ps-card-label">Urbanista Miami Headphone – Product Ad</div>
+                </div>
+                <div class="ps-card" onclick="openLightbox(7)">
+                    <span class="ps-card-num">PS · 7</span>
+                    <img src="perfume-post.png" alt="Perfume Post">
+                    <div class="ps-card-label">Perfume – Product Poster</div>
+                </div>
+                <div class="ps-card" onclick="openLightbox(8)">
+                    <span class="ps-card-num">PS · 8</span>
+                    <img src="sprite.png" alt="Sprite Ad">
+                    <div class="ps-card-label">Sprite – Stay Cool Beverage Ad</div>
+                </div>
+                <div class="ps-card" onclick="openLightbox(9)">
+                    <span class="ps-card-num">PS · 9</span>
+                    <img src="taask-10.jpg" alt="Task 10">
+                    <div class="ps-card-label">Account Manager – Internship Poster</div>
+                </div>
+                <div class="ps-card" onclick="openLightbox(10)">
+                    <span class="ps-card-num">PS · 10</span>
+                    <img src="task001.jpg" alt="Graphic Designer">
+                    <div class="ps-card-label">Professional Graphic Designer – Ad</div>
+                </div>
+                <div class="ps-card" onclick="openLightbox(11)">
+                    <span class="ps-card-num">PS · 11</span>
+                    <img src="task-12.jpg" alt="Yamaha MT15">
+                    <div class="ps-card-label">Yamaha MT-15 – Automotive Poster</div>
+                </div>
+                
+                <div class="ps-card" onclick="openLightbox(12)">
+                    <span class="ps-card-num">PS · 12</span>
+                    <img src="yellow-car.png" alt="Chevrolet Camaro">
+                    <div class="ps-card-label">Chevrolet Camaro – Automotive Poster</div>
+                </div>
+                <div class="ps-card" onclick="openLightbox(13)">
+                    <span class="ps-card-num">PS · 13</span>
+                    <img src="TASK-33.jpg" alt="Fashion Collection">
+                    <div class="ps-card-label">Fashion Collection – Editorial Poster</div>
+                </div>
+                <div class="ps-card" onclick="openLightbox(14)">
+                    <span class="ps-card-num">PS · 14</span>
+                    <img src="WhatsApp_Image_2025-08-16_at_7_06_10_PM.jpeg" alt="Fresh Sprite">
+                    <div class="ps-card-label">Fresh Sprite – Beverage Ad</div>
+                </div>
+                
             </div>
-
-            <!-- Figma -->
-            <div class="proj-card" onclick="openModal('figma')">
-                <div class="proj-thumb-placeholder" style="background:linear-gradient(135deg,#1a1505,#2a1a00,#3a1505)">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" alt="Figma"
-                        style="width:52px;height:52px">
-                    <span>Figma Project</span>
-                </div>
-                <div class="proj-card-badge">Figma</div>
-                <div class="proj-body">
-                    <div class="proj-label">UI/UX Design</div>
-                    <div class="proj-name">App UI Prototype</div>
-                    <div class="proj-desc">Complete mobile app UI with interactive components, design system and user
-                        flows.</div>
-                    <div class="proj-cta">View Project →</div>
-                </div>
-            </div>
-
-            <!-- Canva -->
-            <div class="proj-card" onclick="openModal('canva')">
-                <div class="proj-thumb-placeholder" style="background:linear-gradient(135deg,#0a2030,#1a0530,#001a20)">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Canva_Logo.svg/250px-Canva_Logo.svg.png"
-                        alt="Canva" style="width:70px;height:auto">
-                    <span>Canva Project</span>
-                </div>
-                <div class="proj-card-badge">Canva</div>
-                <div class="proj-body">
-                    <div class="proj-label">Social Media Design</div>
-                    <div class="proj-name">Brand Content Pack</div>
-                    <div class="proj-desc">Social media posts, stories & banners with unified brand identity and
-                        language.</div>
-                    <div class="proj-cta">View Project →</div>
-                </div>
-            </div>
-
-            <!-- Development -->
-            <div class="proj-card" onclick="openModal('dev')">
-                <div class="proj-thumb-placeholder" style="background:linear-gradient(135deg,#001a0a,#0a1a30,#001510)">
-                    <div class="icon-text">&lt;/&gt;</div>
-                    <span>Development Project</span>
-                </div>
-                <div class="proj-card-badge">Development</div>
-                <div class="proj-body">
-                    <div class="proj-label">Web Development</div>
-                    <div class="proj-name">Responsive Website</div>
-                    <div class="proj-desc">Fully responsive website with smooth animations, scroll effects and clean
-                        modern layout.</div>
-                    <div class="proj-cta">View Project →</div>
-                </div>
-            </div>
-
         </div>
+        <div class="carousel-hint reveal">DRAG TO SCROLL</div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact">
-        <div class="section-label reveal">Get In Touch</div>
-        <h2 class="section-title reveal">Let's Connect</h2>
-        <p class="section-sub reveal">Open for freelance &amp; full-time opportunities.</p>
-        <div class="contact-links reveal">
-            <a href="mailto:sridhar@email.com" class="contact-link">📧 Email Me</a>
-            <a href="#" class="contact-link">💼 LinkedIn</a>
-            <a href="#" class="contact-link">🐦 Twitter</a>
-            <a href="#" class="contact-link">🐙 GitHub</a>
+    <!-- LIGHTBOX -->
+    <div id="lightbox">
+        <button id="lightbox-close" onclick="closeLightbox()">✕</button>
+        <img id="lightbox-img" src="" alt="">
+        <div id="lightbox-label"></div>
+        <div id="lightbox-nav">
+            <div class="lb-arrow" onclick="lbNav(-1)">←</div>
+            <div id="lb-counter"></div>
+            <div class="lb-arrow" onclick="lbNav(1)">→</div>
         </div>
-    </section>
-
-    <!-- MODAL -->
-    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
-        <div class="modal" id="modalBox"></div>
     </div>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="footer-logo-dot">S</div>
+                        <div class="footer-logo-name">Sridhar</div>
+                    </div>
+                    <p class="footer-tagline">UI/UX Designer crafting clean, effortless digital experiences.</p>
+                    <div class="footer-status">
+                        <div class="footer-status-dot"></div>
+                        Available for opportunities
+                    </div>
+                </div>
+                <div class="footer-links-group">
+                    <div class="footer-col">
+                        <h5>Navigate</h5>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#skills">Skills</a></li>
+                            <li><a href="#projects">Projects</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h5>Skills</h5>
+                        <ul>
+                            <li><a href="#skills">UI/UX Design</a></li>
+                            <li><a href="#skills">Figma</a></li>
+                            <li><a href="#skills">Photoshop</a></li>
+                            <li><a href="#skills">HTML &amp; CSS</a></li>
+                            <li><a href="#skills">UX Research</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p class="footer-copy">© 2025 <span>Sridhar</span> · All rights reserved.</p>
+                <div class="footer-socials">
+                    <a href="https://www.linkedin.com/in/sri-dhar-4983b7293" target="_blank"
+                        class="footer-social-link linkedin-link" title="LinkedIn">
+                        💼 LinkedIn
+                    </a>
+                    <a href="#home" class="footer-social-link" title="Back to top">↑</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        // NAV active
+        const ring = document.getElementById('cursor-ring');
+        const dot = document.getElementById('cursor-dot');
+        let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+        let rx = mx, ry = my;
+        document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx + 'px'; dot.style.top = my + 'px'; });
+        (function animRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animRing); })();
+
+        (function () {
+            const canvas = document.getElementById('bg-canvas');
+            const ctx = canvas.getContext('2d');
+            function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+            resize(); window.addEventListener('resize', resize);
+            const nodes = Array.from({ length: 70 }, () => ({ x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight, z: Math.random() * 2 + 0.3, vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3, r: Math.random() * 1.8 + 0.4, pulse: Math.random() * Math.PI * 2 }));
+            const rings = Array.from({ length: 5 }, (_, i) => ({ cx: Math.random() * window.innerWidth, cy: Math.random() * window.innerHeight, radius: 60 + Math.random() * 120, speed: 0.003 + Math.random() * 0.004, angle: Math.random() * Math.PI * 2, tilt: Math.random() * 0.6 + 0.2, color: i % 2 === 0 ? '224,48,48' : '30,80,200' }));
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < nodes.length; i++) { for (let j = i + 1; j < nodes.length; j++) { const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y, dist = Math.sqrt(dx * dx + dy * dy); if (dist < 140) { ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y); ctx.strokeStyle = `rgba(224,48,48,${(1 - dist / 140) * 0.07 * nodes[i].z})`; ctx.lineWidth = 0.5; ctx.stroke(); } } }
+                nodes.forEach(n => { n.pulse += 0.02; ctx.beginPath(); ctx.arc(n.x, n.y, n.r * n.z * (1 + 0.4 * Math.sin(n.pulse)), 0, Math.PI * 2); ctx.fillStyle = `rgba(224,48,48,${0.2 + 0.15 * n.z})`; ctx.fill(); n.x += n.vx * n.z; n.y += n.vy * n.z; if (n.x < -10) n.x = canvas.width + 10; if (n.x > canvas.width + 10) n.x = -10; if (n.y < -10) n.y = canvas.height + 10; if (n.y > canvas.height + 10) n.y = -10; });
+                rings.forEach(r => { r.angle += r.speed; const px = r.cx + Math.cos(r.angle) * r.radius, py = r.cy + Math.sin(r.angle) * r.radius * r.tilt; ctx.beginPath(); ctx.ellipse(r.cx, r.cy, r.radius, r.radius * r.tilt, 0, 0, Math.PI * 2); ctx.strokeStyle = `rgba(${r.color},0.06)`; ctx.lineWidth = 1; ctx.stroke(); ctx.beginPath(); ctx.arc(px, py, 2.5, 0, Math.PI * 2); ctx.fillStyle = `rgba(${r.color},0.5)`; ctx.fill(); });
+                requestAnimationFrame(draw);
+            }
+            draw();
+        })();
+
+        const carousel = document.getElementById('carousel');
+        let isDown = false, startX, scrollLeft2;
+        let autoScrollPaused = false;
+        setInterval(() => { if (!autoScrollPaused) { carousel.scrollLeft += 1.2; if (carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth - 2) carousel.scrollLeft = 0; } }, 16);
+        carousel.addEventListener('mouseenter', () => autoScrollPaused = true);
+        carousel.addEventListener('mouseleave', () => { autoScrollPaused = false; isDown = false; });
+        carousel.addEventListener('mousedown', e => { isDown = true; startX = e.pageX - carousel.offsetLeft; scrollLeft2 = carousel.scrollLeft; });
+        carousel.addEventListener('mouseup', () => isDown = false);
+        carousel.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); carousel.scrollLeft = scrollLeft2 - (e.pageX - carousel.offsetLeft - startX) * 1.5; });
+        let touchStartX = 0, touchScrollLeft = 0;
+        carousel.addEventListener('touchstart', e => { autoScrollPaused = true; touchStartX = e.touches[0].pageX; touchScrollLeft = carousel.scrollLeft; });
+        carousel.addEventListener('touchend', () => autoScrollPaused = false);
+        carousel.addEventListener('touchmove', e => { carousel.scrollLeft = touchScrollLeft - (e.touches[0].pageX - touchStartX); });
+
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('nav a[href^="#"]');
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(s => { if (window.scrollY >= s.offsetTop - 200) current = s.id });
-            navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
-        });
+        window.addEventListener('scroll', () => { let current = ''; sections.forEach(s => { if (window.scrollY >= s.offsetTop - 200) current = s.id; }); navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current)); });
 
-        // REVEAL
         const reveals = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') });
-        }, { threshold: 0.12 });
+        const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.12 });
         reveals.forEach(r => observer.observe(r));
 
-        // SKILL ACCORDION
-        function toggleSkill(card, key) {
-            const isOpen = card.classList.contains('open');
-            document.querySelectorAll('.skill-card').forEach(c => c.classList.remove('open'));
-            document.querySelectorAll('.skill-expand').forEach(e => e.classList.remove('open'));
-            if (!isOpen) {
-                card.classList.add('open');
-                document.getElementById('expand-' + key).classList.add('open');
-            }
-        }
+        const lbData = [
+            { src: 'WhatsApp_Image_2025-08-21_at_4_58_15_PM.jpeg', label: 'Colombia Instant Coffee – Product Ad' },
+            { src: '_mango.jpg', label: 'Maaza Mango Juice – Product Poster' },
+            { src: '119.png', label: 'Porsche – Automotive Poster' },
+            { src: 'bata.jpg', label: 'Bata Black Sneaker – Product Ad' },
+            { src: 'biriyani.png', label: 'Spicy Biriyani – Restaurant Poster' },
+            { src: 'BMW.png', label: 'BMW 8 Series Gran Coupe – Ad' },
+            { src: 'coffee.jpg', label: 'Buy 1 Get 1 Coffee Offer – Promo' },
+            { src: 'faashion.jpg', label: 'Wfash Fashion Festival – Event Poster' },
+            { src: 'headphone.png', label: 'Urbanista Miami Headphone – Product Ad' },
+            { src: 'perfume-post.png', label: 'Perfume – Product Poster' },
+            { src: 'sprite.png', label: 'Sprite – Stay Cool Beverage Ad' },
+            { src: 'taask-10.jpg', label: 'Account Manager – Internship Poster' },
+            { src: 'task001.jpg', label: 'Professional Graphic Designer – Ad' },
+            { src: 'task-12.jpg', label: 'Yamaha MT-15 – Automotive Poster' },
+            { src: 'bike.png', label: 'Ducati – Speed with a Soul Poster' },
+            { src: 'yellow-car.png', label: 'Chevrolet Camaro – Automotive Poster' },
+            { src: 'TASK-33.jpg', label: 'Fashion Collection – Editorial Poster' },
+            { src: 'WhatsApp_Image_2025-08-16_at_7_06_10_PM.jpeg', label: 'Fresh Sprite – Beverage Ad' },
+            { src: 'WhatsApp_Image_2025-08-25_at_11_29_08_AM.jpeg', label: 'We Are Hiring – Recruitment Poster' },
+        ];
+        let lbCurrent = 0;
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        const lbLbl = document.getElementById('lightbox-label');
+        const lbCounter = document.getElementById('lb-counter');
+        function openLightbox(idx) { lbCurrent = idx; updateLb(); lb.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeLightbox() { lb.classList.remove('active'); document.body.style.overflow = ''; }
+        function updateLb() { lbImg.src = lbData[lbCurrent].src; lbLbl.textContent = lbData[lbCurrent].label; lbCounter.textContent = (lbCurrent + 1) + ' / ' + lbData.length; }
+        function lbNav(dir) { lbCurrent = (lbCurrent + dir + lbData.length) % lbData.length; lbImg.style.animation = 'none'; lbImg.offsetHeight; lbImg.style.animation = ''; updateLb(); }
+        document.getElementById('lightbox').addEventListener('click', function (e) { if (e.target === this) closeLightbox(); });
+        document.addEventListener('keydown', e => { if (!lb.classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') lbNav(1); if (e.key === 'ArrowLeft') lbNav(-1); });
 
-        // 3D CARD TILT
-        document.querySelectorAll('.proj-card').forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = (e.clientX - rect.left) / rect.width - 0.5;
-                const y = (e.clientY - rect.top) / rect.height - 0.5;
-                card.style.transform = `translateY(-8px) rotateX(${-y * 8}deg) rotateY(${x * 8}deg) scale(1.01)`;
-            });
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = '';
-            });
-        });
-
-        // PROJECT DATA
-        const projects = {
-            photoshop: {
-                tool: 'Adobe Photoshop', color: '#1473e6',
-                title: 'Visual Composition',
-                desc: 'A creative poster & branding design crafted using Adobe Photoshop. This project involved advanced layer techniques, color grading, typography composition, and photo manipulation to create a visually stunning piece.',
-                gradient: ['#1a0530', '#0d1a4a', '#1a0010'],
-                icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Adobe_Photoshop_CC_icon.svg/512px-Adobe_Photoshop_CC_icon.svg.png',
-                tags: ['Photo Manipulation', 'Color Grading', 'Typography', 'Layer Masking', 'Branding'],
-                // 3D scene: floating layers / panels
-                scene: 'photoshop'
-            },
-            figma: {
-                tool: 'Figma', color: '#a259ff',
-                title: 'App UI Prototype',
-                desc: 'A complete mobile app UI prototype designed in Figma. Includes a full design system with reusable components, interactive prototypes, user flows, and a comprehensive style guide for developers.',
-                gradient: ['#1a1505', '#2a1a00', '#3a1505'],
-                icon: 'https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg',
-                tags: ['UI Design', 'Prototyping', 'Design System', 'Components', 'User Flows'],
-                scene: 'figma'
-            },
-            canva: {
-                tool: 'Canva', color: '#7d2ae8',
-                title: 'Brand Content Pack',
-                desc: 'A complete social media content pack created in Canva for a brand identity. Includes Instagram posts, stories, LinkedIn banners, and promotional materials — all consistent with a unified brand language.',
-                gradient: ['#0a2030', '#1a0530', '#001a20'],
-                icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Canva_Logo.svg/250px-Canva_Logo.svg.png',
-                tags: ['Social Media', 'Branding', 'Content Design', 'Typography', 'Instagram'],
-                scene: 'canva'
-            },
-            dev: {
-                tool: 'Development', color: '#00d4aa',
-                title: 'Responsive Website',
-                desc: 'A fully responsive website built from scratch using HTML5, CSS3, and JavaScript. Features smooth animations, scroll-triggered effects, and a clean modern layout optimised for all screen sizes.',
-                gradient: ['#001a0a', '#0a1a30', '#001510'],
-                icon: null, iconText: '</>',
-                tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive', 'Animations', 'Bootstrap'],
-                scene: 'dev'
-            }
-        };
-
-        // OPEN MODAL
-        function openModal(key) {
-            const p = projects[key];
-            const box = document.getElementById('modalBox');
-            const tagsHtml = p.tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
-            const iconHtml = p.icon
-                ? `<img src="${p.icon}" style="width:70px;height:70px;object-fit:contain;filter:drop-shadow(0 4px 20px rgba(0,0,0,0.5))">`
-                : `<div style="font-size:64px;font-family:monospace;font-weight:700;color:${p.color}">${p.iconText}</div>`;
-
-            box.innerHTML = `
-    <div class="proj-canvas" id="canvasWrap">
-      <canvas id="projCanvas"></canvas>
-    </div>
-    <div class="modal-body">
-      <button class="modal-close" onclick="closeModalBtn()">✕</button>
-      <div class="modal-tool-tag" style="background:${p.color}">${p.tool}</div>
-      <div class="modal-title">${p.title}</div>
-      <div class="modal-desc">${p.desc}</div>
-      <div class="modal-tags">${tagsHtml}</div>
-    </div>`;
-
-            document.getElementById('modalOverlay').classList.add('open');
-            document.body.style.overflow = 'hidden';
-
-            setTimeout(() => initScene(key, p), 50);
-        }
-
-        // ── 3D CANVAS SCENES ──
-        function initScene(key, p) {
-            const canvas = document.getElementById('projCanvas');
-            const wrap = document.getElementById('canvasWrap');
-            if (!canvas || !wrap) return;
-            const W = wrap.clientWidth, H = wrap.clientHeight;
-            canvas.width = W; canvas.height = H;
-            const ctx = canvas.getContext('2d');
-            let raf, t = 0;
-
-            const scenes = {
-                photoshop: () => {
-                    // Floating layered panels like PS layers
-                    ctx.clearRect(0, 0, W, H);
-                    const grd = ctx.createLinearGradient(0, 0, W, H);
-                    grd.addColorStop(0, '#1a0530'); grd.addColorStop(0.5, '#0d1a4a'); grd.addColorStop(1, '#1a0010');
-                    ctx.fillStyle = grd; ctx.fillRect(0, 0, W, H);
-
-                    const layers = [
-                        { w: 280, h: 180, col: 'rgba(20,115,230,0.25)', label: 'Background', y: -30 },
-                        { w: 220, h: 140, col: 'rgba(20,115,230,0.35)', label: 'Color Grade', y: 0 },
-                        { w: 170, h: 110, col: 'rgba(20,115,230,0.5)', label: 'Typography', y: 30 },
-                        { w: 130, h: 85, col: 'rgba(20,115,230,0.7)', label: 'Overlay', y: 60 },
-                    ];
-                    layers.forEach((l, i) => {
-                        const ox = Math.sin(t * 0.8 + i) * 8;
-                        const oy = Math.cos(t * 0.6 + i) * 6 + l.y;
-                        const cx = W / 2, cy = H / 2 - 20;
-                        const x = cx - l.w / 2 + ox;
-                        const y = cy - l.h / 2 + oy + (i - 1.5) * 30;
-
-                        // shadow
-                        ctx.shadowColor = 'rgba(0,0,0,0.6)'; ctx.shadowBlur = 20; ctx.shadowOffsetY = 8;
-                        ctx.fillStyle = l.col;
-                        roundRect(ctx, x, y, l.w, l.h, 8); ctx.fill();
-                        ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
-
-                        // border
-                        ctx.strokeStyle = 'rgba(20,115,230,0.5)'; ctx.lineWidth = 1;
-                        roundRect(ctx, x, y, l.w, l.h, 8); ctx.stroke();
-
-                        // label
-                        ctx.fillStyle = 'rgba(255,255,255,0.7)'; ctx.font = '11px Satoshi,sans-serif';
-                        ctx.fillText(l.label, x + 10, y + 18);
-                    });
-
-                    // Floating particles
-                    for (let i = 0; i < 12; i++) {
-                        const px = W / 2 + Math.cos(t * 0.5 + i * 0.8) * 150;
-                        const py = H / 2 + Math.sin(t * 0.4 + i * 1.1) * 80;
-                        ctx.beginPath(); ctx.arc(px, py, 1.5, 0, Math.PI * 2);
-                        ctx.fillStyle = `rgba(20,115,230,${0.3 + Math.sin(t + i) * 0.2})`; ctx.fill();
-                    }
-                    t += 0.02; raf = requestAnimationFrame(scenes.photoshop);
-                },
-
-                figma: () => {
-                    ctx.clearRect(0, 0, W, H);
-                    const grd = ctx.createLinearGradient(0, 0, W, H);
-                    grd.addColorStop(0, '#1a1505'); grd.addColorStop(0.5, '#2a1500'); grd.addColorStop(1, '#1a0a00');
-                    ctx.fillStyle = grd; ctx.fillRect(0, 0, W, H);
-
-                    // Phone frame
-                    const px = W / 2, py = H / 2;
-                    const pw = 140, ph = 240;
-                    ctx.shadowColor = 'rgba(162,89,255,0.4)'; ctx.shadowBlur = 30;
-                    ctx.fillStyle = 'rgba(30,20,50,0.9)';
-                    roundRect(ctx, px - pw / 2, py - ph / 2, pw, ph, 22); ctx.fill();
-                    ctx.shadowBlur = 0;
-                    ctx.strokeStyle = 'rgba(162,89,255,0.6)'; ctx.lineWidth = 1.5;
-                    roundRect(ctx, px - pw / 2, py - ph / 2, pw, ph, 22); ctx.stroke();
-
-                    // Screen content panels inside phone
-                    const panels = [
-                        { x: px - 55, y: py - 100, w: 110, h: 28, col: 'rgba(162,89,255,0.4)' },
-                        { x: px - 55, y: py - 64, w: 75, h: 18, col: 'rgba(162,89,255,0.25)' },
-                        { x: px - 55, y: py - 38, w: 110, h: 60, col: 'rgba(162,89,255,0.15)' },
-                        { x: px - 55, y: py + 28, w: 50, h: 26, col: 'rgba(162,89,255,0.3)' },
-                        { x: px - 1, y: py + 28, w: 54, h: 26, col: 'rgba(162,89,255,0.2)' },
-                        { x: px - 55, y: py + 60, w: 110, h: 8, col: 'rgba(162,89,255,0.2)' },
-                        { x: px - 55, y: py + 74, w: 80, h: 8, col: 'rgba(162,89,255,0.15)' },
-                    ];
-                    panels.forEach(pan => {
-                        ctx.fillStyle = pan.col;
-                        roundRect(ctx, pan.x, pan.y, pan.w, pan.h, 5); ctx.fill();
-                    });
-
-                    // Orbiting component circles
-                    for (let i = 0; i < 5; i++) {
-                        const angle = t * 1.2 + i * (Math.PI * 2 / 5);
-                        const ox = px + Math.cos(angle) * (130 + Math.sin(t + i) * 20);
-                        const oy = py + Math.sin(angle) * (80 + Math.cos(t + i) * 15);
-                        ctx.beginPath(); ctx.arc(ox, oy, 6 + Math.sin(t * 2 + i) * 2, 0, Math.PI * 2);
-                        ctx.fillStyle = `rgba(162,89,255,${0.4 + Math.sin(t + i) * 0.2})`; ctx.fill();
-                        ctx.strokeStyle = 'rgba(162,89,255,0.3)'; ctx.lineWidth = 1; ctx.stroke();
-                        // connector line
-                        ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(ox, oy);
-                        ctx.strokeStyle = `rgba(162,89,255,0.08)`; ctx.lineWidth = 0.5; ctx.stroke();
-                    }
-                    t += 0.018; raf = requestAnimationFrame(scenes.figma);
-                },
-
-                canva: () => {
-                    ctx.clearRect(0, 0, W, H);
-                    const grd = ctx.createLinearGradient(0, 0, W, H);
-                    grd.addColorStop(0, '#0a1a2a'); grd.addColorStop(1, '#1a0520');
-                    ctx.fillStyle = grd; ctx.fillRect(0, 0, W, H);
-
-                    // Social media card mockups
-                    const cards = [
-                        { x: W / 2 - 220, y: H / 2 - 80, w: 180, h: 180, r: 16, col: 'rgba(125,42,232,0.3)', aspect: 'square' },
-                        { x: W / 2 + 50, y: H / 2 - 60, w: 120, h: 200, r: 20, col: 'rgba(125,42,232,0.2)', aspect: 'story' },
-                        { x: W / 2 - 60, y: H / 2 - 40, w: 120, h: 60, r: 10, col: 'rgba(125,42,232,0.35)', aspect: 'banner' },
-                    ];
-                    cards.forEach((c, i) => {
-                        const fy = Math.sin(t * 0.7 + i * 1.2) * 6;
-                        ctx.shadowColor = 'rgba(125,42,232,0.4)'; ctx.shadowBlur = 20;
-                        ctx.fillStyle = c.col;
-                        roundRect(ctx, c.x, c.y + fy, c.w, c.h, c.r); ctx.fill();
-                        ctx.shadowBlur = 0;
-                        ctx.strokeStyle = 'rgba(125,42,232,0.5)'; ctx.lineWidth = 1;
-                        roundRect(ctx, c.x, c.y + fy, c.w, c.h, c.r); ctx.stroke();
-
-                        // inner content lines
-                        ctx.fillStyle = 'rgba(255,255,255,0.15)';
-                        roundRect(ctx, c.x + 10, c.y + fy + 10, c.w - 20, 12, 4); ctx.fill();
-                        ctx.fillStyle = 'rgba(255,255,255,0.08)';
-                        roundRect(ctx, c.x + 10, c.y + fy + 28, c.w - 40, 8, 3); ctx.fill();
-                        roundRect(ctx, c.x + 10, c.y + fy + 42, c.w - 30, 8, 3); ctx.fill();
-                    });
-
-                    // Floating color palette dots
-                    const palette = ['#7d2ae8', '#e83a8a', '#2ae8a0', '#e8a02a', '#2a8ae8'];
-                    palette.forEach((col, i) => {
-                        const angle = t * 0.9 + i * (Math.PI * 2 / 5);
-                        const ox = W / 2 + Math.cos(angle) * 200; const oy = H / 2 + Math.sin(angle) * 110;
-                        ctx.beginPath(); ctx.arc(ox, oy, 8, 0, Math.PI * 2);
-                        ctx.fillStyle = col + '88'; ctx.fill();
-                        ctx.strokeStyle = col + 'cc'; ctx.lineWidth = 1.5; ctx.stroke();
-                    });
-                    t += 0.018; raf = requestAnimationFrame(scenes.canva);
-                },
-
-                dev: () => {
-                    ctx.clearRect(0, 0, W, H);
-                    const grd = ctx.createLinearGradient(0, 0, W, H);
-                    grd.addColorStop(0, '#001a10'); grd.addColorStop(0.5, '#0a1a28'); grd.addColorStop(1, '#001410');
-                    ctx.fillStyle = grd; ctx.fillRect(0, 0, W, H);
-
-                    // Browser window frame
-                    const bx = W / 2 - 200, by = H / 2 - 110, bw = 400, bh = 200;
-                    ctx.shadowColor = 'rgba(0,212,170,0.3)'; ctx.shadowBlur = 25;
-                    ctx.fillStyle = 'rgba(10,25,20,0.95)';
-                    roundRect(ctx, bx, by, bw, bh, 12); ctx.fill();
-                    ctx.shadowBlur = 0;
-                    ctx.strokeStyle = 'rgba(0,212,170,0.4)'; ctx.lineWidth = 1;
-                    roundRect(ctx, bx, by, bw, bh, 12); ctx.stroke();
-
-                    // Browser bar
-                    ctx.fillStyle = 'rgba(0,212,170,0.15)';
-                    roundRect(ctx, bx, by, bw, 32, { tl: 12, tr: 12, bl: 0, br: 0 }); ctx.fill();
-                    // Dots
-                    ['#ff5f56', '#ffbd2e', '#27c93f'].forEach((col, i) => {
-                        ctx.beginPath(); ctx.arc(bx + 16 + i * 18, by + 16, 5, 0, Math.PI * 2);
-                        ctx.fillStyle = col + 'cc'; ctx.fill();
-                    });
-                    // URL bar
-                    ctx.fillStyle = 'rgba(0,212,170,0.1)';
-                    roundRect(ctx, bx + 70, by + 9, bw - 140, 14, 7); ctx.fill();
-
-                    // Code lines
-                    const codeLines = [
-                        { col: 'rgba(0,212,170,0.8)', w: 120, x: 16 },
-                        { col: 'rgba(255,255,255,0.3)', w: 80, x: 30 },
-                        { col: 'rgba(0,200,255,0.6)', w: 160, x: 30 },
-                        { col: 'rgba(255,255,255,0.3)', w: 60, x: 30 },
-                        { col: 'rgba(255,180,0,0.6)', w: 140, x: 30 },
-                        { col: 'rgba(255,255,255,0.3)', w: 90, x: 16 },
-                        { col: 'rgba(0,212,170,0.5)', w: 110, x: 16 },
-                    ];
-                    codeLines.forEach((line, i) => {
-                        const visible = (t * 30) % (codeLines.length * 14) > i * 14;
-                        ctx.fillStyle = line.col + (visible ? '' : '44');
-                        ctx.fillRect(bx + line.x, by + 44 + i * 18, line.w, 6);
-                    });
-
-                    // Floating HTML/CSS/JS tags
-                    const tags = [{ l: 'HTML', c: '#e34c26' }, { l: 'CSS', c: '#264de4' }, { l: 'JS', c: '#f7df1e' }];
-                    tags.forEach((tag, i) => {
-                        const angle = t * 1.1 + i * (Math.PI * 2 / 3);
-                        const ox = W / 2 + Math.cos(angle) * 210; const oy = H / 2 + Math.sin(angle) * 115;
-                        ctx.shadowColor = tag.c + '88'; ctx.shadowBlur = 15;
-                        ctx.fillStyle = tag.c + '33';
-                        roundRect(ctx, ox - 22, oy - 12, 44, 24, 6); ctx.fill();
-                        ctx.shadowBlur = 0;
-                        ctx.strokeStyle = tag.c + '88'; ctx.lineWidth = 1;
-                        roundRect(ctx, ox - 22, oy - 12, 44, 24, 6); ctx.stroke();
-                        ctx.fillStyle = tag.c + 'ee'; ctx.font = 'bold 11px monospace';
-                        ctx.textAlign = 'center'; ctx.fillText(tag.l, ox, oy + 4); ctx.textAlign = 'left';
-                    });
-                    t += 0.018; raf = requestAnimationFrame(scenes.dev);
-                }
-            };
-
-            // Store raf ref to cancel on close
-            window._modalRaf = raf;
-            scenes[p.scene]();
-            window._stopScene = () => { cancelAnimationFrame(raf); scenes[p.scene] = () => { } };
-        }
-
-        // Helper: rounded rect path
-        function roundRect(ctx, x, y, w, h, r) {
-            if (typeof r === 'object') {
-                const { tl = 0, tr = 0, br = 0, bl = 0 } = r;
-                ctx.beginPath(); ctx.moveTo(x + tl, y);
-                ctx.lineTo(x + w - tr, y); ctx.quadraticCurveTo(x + w, y, x + w, y + tr);
-                ctx.lineTo(x + w, y + h - br); ctx.quadraticCurveTo(x + w, y + h, x + w - br, y + h);
-                ctx.lineTo(x + bl, y + h); ctx.quadraticCurveTo(x, y + h, x, y + h - bl);
-                ctx.lineTo(x, y + tl); ctx.quadraticCurveTo(x, y, x + tl, y); ctx.closePath();
-            } else {
-                ctx.beginPath(); ctx.moveTo(x + r, y);
-                ctx.lineTo(x + w - r, y); ctx.quadraticCurveTo(x + w, y, x + w, y + r);
-                ctx.lineTo(x + w, y + h - r); ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-                ctx.lineTo(x + r, y + h); ctx.quadraticCurveTo(x, y + h, x, y + h - r);
-                ctx.lineTo(x, y + r); ctx.quadraticCurveTo(x, y, x + r, y); ctx.closePath();
-            }
-        }
-
-        function closeModal(e) { if (e.target === document.getElementById('modalOverlay')) closeModalBtn() }
-        function closeModalBtn() {
-            if (window._stopScene) window._stopScene();
-            document.getElementById('modalOverlay').classList.remove('open');
-            document.body.style.overflow = '';
-        }
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalBtn() });
+        function toggleSkill(card, key) { const isOpen = card.classList.contains('open'); document.querySelectorAll('.skill-card').forEach(c => c.classList.remove('open')); document.querySelectorAll('.skill-panel').forEach(p => p.classList.remove('open')); if (!isOpen) { card.classList.add('open'); document.getElementById('panel-' + key).classList.add('open'); } }
     </script>
 </body>
 

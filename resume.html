@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sridhar M — UI/UX Designer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1410;
+      --cream: #f5f0e8;
+      --warm: #c8a96e;
+      --rust: #b85c38;
+      --muted: #7a6e62;
+      --light: #ece6d9;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      color: var(--ink);
+    }
+
+    .page {
+      min-height: 100vh;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 40px 60px;
+      position: relative;
+    }
+
+    .page::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--rust), var(--warm), var(--rust));
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 24px;
+      padding-bottom: 28px;
+      border-bottom: 1.5px solid var(--warm);
+      margin-bottom: 36px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 3.6rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -1px;
+      color: var(--ink);
+    }
+
+    .name span { color: var(--rust); }
+
+    .title-tag {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .contact {
+      text-align: right;
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .contact a { color: var(--rust); text-decoration: none; }
+    .contact a:hover { text-decoration: underline; }
+
+    .cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 26px;
+      border-radius: 2px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.22s ease;
+      text-decoration: none;
+      border: none;
+    }
+
+    .btn-primary { background: var(--ink); color: var(--cream); }
+    .btn-primary:hover {
+      background: var(--rust);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(184,92,56,0.3);
+    }
+
+    .btn-outline { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+    .btn-outline:hover {
+      background: var(--ink);
+      color: var(--cream);
+      transform: translateY(-2px);
+    }
+
+    .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 40px;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .section { margin-bottom: 34px; }
+
+    .section-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--warm);
+      margin-bottom: 16px;
+    }
+
+    .profile-text {
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: #4a4038;
+    }
+
+    .project-card {
+      padding: 16px 18px;
+      background: var(--light);
+      border-left: 3px solid var(--rust);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .project-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .project-date {
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+    }
+
+    .project-card ul {
+      padding-left: 14px;
+      font-size: 0.81rem;
+      line-height: 1.7;
+      color: #4a4038;
+    }
+
+    .project-card li { margin-bottom: 4px; }
+
+    .edu-degree { font-weight: 500; font-size: 0.88rem; }
+    .edu-college { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+    .edu-date { font-size: 0.72rem; color: var(--rust); margin-top: 4px; letter-spacing: 0.04em; }
+
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 7px; }
+
+    .skill-pill {
+      padding: 5px 13px;
+      border-radius: 1px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      background: var(--ink);
+      color: var(--cream);
+      transition: background 0.2s;
+    }
+
+    .skill-pill:hover { background: var(--rust); }
+
+    .cert-item {
+      font-size: 0.8rem;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--light);
+      line-height: 1.4;
+      color: #4a4038;
+    }
+
+    .cert-item:last-child { border-bottom: none; }
+    .cert-issuer { font-size: 0.7rem; color: var(--muted); margin-top: 2px; }
+
+    footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--light);
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-align: center;
+      animation: fadeUp 0.9s 0.3s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 620px) {
+      .page { padding: 32px 20px 48px; }
+      .grid { grid-template-columns: 1fr; }
+      header { grid-template-columns: 1fr; }
+      .contact { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="name">SRIDHAR<span> M</span></div>
+      <div class="title-tag">UI/UX Designer &amp; Frontend Developer</div>
+    </div>
+    <div class="contact">
+      <a href="mailto:Sridhar240604@gmail.com">Sridhar240604@gmail.com</a><br/>
+      7010492961<br/>
+      Tiruppur, India<br/>
+      <a href="https://linkedin.com/in/sri-dhar-4983b7293" target="_blank">LinkedIn ↗</a>
+    </div>
+  </header>
+
+  <div class="cta-row">
+    <a class="btn btn-primary" href="/index.html" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+        <polyline points="15 3 21 3 21 9"/>
+        <line x1="10" y1="14" x2="21" y2="3"/>
+      </svg>
+      View Portfolio
+    </a>
+    <a class="btn btn-outline" id="downloadBtn" href="/SRIDHAR M resume.pdf">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Download Resume
+    </a>
+  </div>
+
+  <div class="grid">
+
+    <div>
+      <div class="section">
+        <div class="section-label">Profile</div>
+        <p class="profile-text">
+          UI/UX Designer &amp; Frontend Developer with strong skills in wireframing, prototyping,
+          and user-focused design. Experienced in creating responsive and visually engaging web
+          interfaces. Passionate about crafting seamless digital experiences and delivering
+          meaningful product solutions.
+        </p>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Projects</div>
+        <div class="project-card">
+          <div class="project-name">B Trip — AI Travel Planning App</div>
+          <div class="project-date">Nov 2025 – Feb 2026 &nbsp;·&nbsp; UI/UX Design</div>
+          <ul>
+            <li>Conducted user research and created personas for budget travelers.</li>
+            <li>Defined clear user flows from destination selection to booking completion.</li>
+            <li>Designed Lo-Fi wireframes focusing on usability and layout clarity.</li>
+            <li>Converted wireframes to Hi-Fi prototypes in Figma with full visual design.</li>
+            <li>Built train &amp; bus booking, group trip planning, AI budget suggestions.</li>
+            <li>Ensured seamless user-friendly booking experience across all screens.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Education</div>
+        <div class="edu-degree">Bachelor of Commerce (Banking &amp; Insurance)</div>
+        <div class="edu-college">Puratchi Thalaivi Amma Government Arts and Science College</div>
+        <div class="edu-date">Jun 2022 – May 2025 &nbsp;·&nbsp; Tiruppur, India</div>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <div class="section">
+        <div class="section-label">Skills</div>
+        <div class="skills-grid">
+          <span class="skill-pill">Figma</span>
+          <span class="skill-pill">HTML &amp; CSS</span>
+          <span class="skill-pill">JavaScript</span>
+          <span class="skill-pill">Bootstrap</span>
+          <span class="skill-pill">Photoshop</span>
+          <span class="skill-pill">Illustrator</span>
+          <span class="skill-pill">Canva</span>
+          <span class="skill-pill">CapCut</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Certificates</div>
+        <div class="cert-item">
+          Digital Poster Making
+          <div class="cert-issuer">Jai Shriram Engineering College</div>
+        </div>
+        <div class="cert-item">
+          Typewriting — English
+          <div class="cert-issuer">Government of Tamil Nadu</div>
+        </div>
+        <div class="cert-item">
+          Master Program in UI/UX
+          <div class="cert-issuer">FITA Academy</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>© 2026 Sridhar M &nbsp;·&nbsp; Tiruppur, India</footer>
+
+</div>
+
+<script>
+  const btn = document.getElementById('downloadBtn');
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    const link = document.createElement('a');
+    link.href = '/SRIDHAR M resume.pdf'; // PDF same folder la வையுங்கள்
+    link.download = '/SRIDHAR M resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  });
+</script>
+</body>
+</html>
