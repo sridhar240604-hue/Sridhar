@@ -1336,13 +1336,11 @@
         </div>
     </section>
 
-    <!-- PROJECTS – All images included -->
     <section id="projects">
         <div class="section-label reveal">What I've Built</div>
         <h2 class="section-title reveal">Projects</h2>
         <div class="carousel-track-wrap reveal" id="carousel">
             <div class="carousel-track">
-                
                 <div class="ps-card" onclick="openLightbox(1)">
                     <span class="ps-card-num">PS · 01</span>
                     <img src="119.png" alt="Porsche Ad">
@@ -1363,7 +1361,6 @@
                     <img src="BMW.png" alt="BMW Gran Coupe">
                     <div class="ps-card-label">BMW 8 Series Gran Coupe – Ad</div>
                 </div>
-               
                 <div class="ps-card" onclick="openLightbox(5)">
                     <span class="ps-card-num">PS · 05</span>
                     <img src="faashion.jpg" alt="Fashion Festival">
@@ -1394,26 +1391,16 @@
                     <img src="task001.jpg" alt="Graphic Designer">
                     <div class="ps-card-label">Professional Graphic Designer – Ad</div>
                 </div>
-                <div class="ps-card" onclick="openLightbox(11)">
-                    <span class="ps-card-num">PS · 11</span>
-                    <img src="task-12.jpg" alt="Yamaha MT15">
-                    <div class="ps-card-label">Yamaha MT-15 – Automotive Poster</div>
-                </div>
                 
-                <div class="ps-card" onclick="openLightbox(12)">
+                <div class="ps-card" onclick="openLightbox(11)">
                     <span class="ps-card-num">PS · 12</span>
                     <img src="yellow-car.png" alt="Chevrolet Camaro">
                     <div class="ps-card-label">Chevrolet Camaro – Automotive Poster</div>
                 </div>
-                <div class="ps-card" onclick="openLightbox(13)">
+                <div class="ps-card" onclick="openLightbox(12)">
                     <span class="ps-card-num">PS · 13</span>
                     <img src="TASK-33.jpg" alt="Fashion Collection">
                     <div class="ps-card-label">Fashion Collection – Editorial Poster</div>
-                </div>
-                <div class="ps-card" onclick="openLightbox(14)">
-                    <span class="ps-card-num">PS · 14</span>
-                    <img src="WhatsApp_Image_2025-08-16_at_7_06_10_PM.jpeg" alt="Fresh Sprite">
-                    <div class="ps-card-label">Fresh Sprite – Beverage Ad</div>
                 </div>
                 
             </div>
@@ -1421,7 +1408,6 @@
         <div class="carousel-hint reveal">DRAG TO SCROLL</div>
     </section>
 
-    <!-- LIGHTBOX -->
     <div id="lightbox">
         <button id="lightbox-close" onclick="closeLightbox()">✕</button>
         <img id="lightbox-img" src="" alt="">
@@ -1432,6 +1418,19 @@
             <div class="lb-arrow" onclick="lbNav(1)">→</div>
         </div>
     </div>
+
+    <section id="contact">
+        <div class="section-label reveal">Get In Touch</div>
+        <h2 class="section-title reveal">Contact</h2>
+        <p class="section-sub reveal">Let's connect and create something amazing.</p>
+        <a href="https://www.linkedin.com/in/sri-dhar-4983b7293" target="_blank" class="linkedin-card reveal">
+            <div class="linkedin-icon">💼</div>
+            <div class="linkedin-card-name">Sridhar</div>
+            <div class="linkedin-card-role">UI/UX Designer</div>
+            <div class="linkedin-divider"></div>
+            <div class="linkedin-card-btn">Connect on LinkedIn</div>
+        </a>
+    </section>
 
     <footer>
         <div class="footer-inner">
@@ -1485,52 +1484,154 @@
     </footer>
 
     <script>
+        // ── Cursor ──
         const ring = document.getElementById('cursor-ring');
         const dot = document.getElementById('cursor-dot');
         let mx = window.innerWidth / 2, my = window.innerHeight / 2;
         let rx = mx, ry = my;
-        document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx + 'px'; dot.style.top = my + 'px'; });
-        (function animRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animRing); })();
+        document.addEventListener('mousemove', e => {
+            mx = e.clientX; my = e.clientY;
+            dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+        });
+        (function animRing() {
+            rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+            ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+            requestAnimationFrame(animRing);
+        })();
 
+        // ── Background canvas ──
         (function () {
             const canvas = document.getElementById('bg-canvas');
             const ctx = canvas.getContext('2d');
             function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
             resize(); window.addEventListener('resize', resize);
-            const nodes = Array.from({ length: 70 }, () => ({ x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight, z: Math.random() * 2 + 0.3, vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3, r: Math.random() * 1.8 + 0.4, pulse: Math.random() * Math.PI * 2 }));
-            const rings = Array.from({ length: 5 }, (_, i) => ({ cx: Math.random() * window.innerWidth, cy: Math.random() * window.innerHeight, radius: 60 + Math.random() * 120, speed: 0.003 + Math.random() * 0.004, angle: Math.random() * Math.PI * 2, tilt: Math.random() * 0.6 + 0.2, color: i % 2 === 0 ? '224,48,48' : '30,80,200' }));
+            const nodes = Array.from({ length: 70 }, () => ({
+                x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight,
+                z: Math.random() * 2 + 0.3, vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+                r: Math.random() * 1.8 + 0.4, pulse: Math.random() * Math.PI * 2
+            }));
+            const rings = Array.from({ length: 5 }, (_, i) => ({
+                cx: Math.random() * window.innerWidth, cy: Math.random() * window.innerHeight,
+                radius: 60 + Math.random() * 120, speed: 0.003 + Math.random() * 0.004,
+                angle: Math.random() * Math.PI * 2, tilt: Math.random() * 0.6 + 0.2,
+                color: i % 2 === 0 ? '224,48,48' : '30,80,200'
+            }));
             function draw() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                for (let i = 0; i < nodes.length; i++) { for (let j = i + 1; j < nodes.length; j++) { const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y, dist = Math.sqrt(dx * dx + dy * dy); if (dist < 140) { ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y); ctx.strokeStyle = `rgba(224,48,48,${(1 - dist / 140) * 0.07 * nodes[i].z})`; ctx.lineWidth = 0.5; ctx.stroke(); } } }
-                nodes.forEach(n => { n.pulse += 0.02; ctx.beginPath(); ctx.arc(n.x, n.y, n.r * n.z * (1 + 0.4 * Math.sin(n.pulse)), 0, Math.PI * 2); ctx.fillStyle = `rgba(224,48,48,${0.2 + 0.15 * n.z})`; ctx.fill(); n.x += n.vx * n.z; n.y += n.vy * n.z; if (n.x < -10) n.x = canvas.width + 10; if (n.x > canvas.width + 10) n.x = -10; if (n.y < -10) n.y = canvas.height + 10; if (n.y > canvas.height + 10) n.y = -10; });
-                rings.forEach(r => { r.angle += r.speed; const px = r.cx + Math.cos(r.angle) * r.radius, py = r.cy + Math.sin(r.angle) * r.radius * r.tilt; ctx.beginPath(); ctx.ellipse(r.cx, r.cy, r.radius, r.radius * r.tilt, 0, 0, Math.PI * 2); ctx.strokeStyle = `rgba(${r.color},0.06)`; ctx.lineWidth = 1; ctx.stroke(); ctx.beginPath(); ctx.arc(px, py, 2.5, 0, Math.PI * 2); ctx.fillStyle = `rgba(${r.color},0.5)`; ctx.fill(); });
+                for (let i = 0; i < nodes.length; i++) {
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y, dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 140) {
+                            ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y);
+                            ctx.strokeStyle = `rgba(224,48,48,${(1 - dist / 140) * 0.07 * nodes[i].z})`; ctx.lineWidth = 0.5; ctx.stroke();
+                        }
+                    }
+                }
+                nodes.forEach(n => {
+                    n.pulse += 0.02;
+                    ctx.beginPath(); ctx.arc(n.x, n.y, n.r * n.z * (1 + 0.4 * Math.sin(n.pulse)), 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(224,48,48,${0.2 + 0.15 * n.z})`; ctx.fill();
+                    n.x += n.vx * n.z; n.y += n.vy * n.z;
+                    if (n.x < -10) n.x = canvas.width + 10; if (n.x > canvas.width + 10) n.x = -10;
+                    if (n.y < -10) n.y = canvas.height + 10; if (n.y > canvas.height + 10) n.y = -10;
+                });
+                rings.forEach(r => {
+                    r.angle += r.speed;
+                    const px = r.cx + Math.cos(r.angle) * r.radius, py = r.cy + Math.sin(r.angle) * r.radius * r.tilt;
+                    ctx.beginPath(); ctx.ellipse(r.cx, r.cy, r.radius, r.radius * r.tilt, 0, 0, Math.PI * 2);
+                    ctx.strokeStyle = `rgba(${r.color},0.06)`; ctx.lineWidth = 1; ctx.stroke();
+                    ctx.beginPath(); ctx.arc(px, py, 2.5, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${r.color},0.5)`; ctx.fill();
+                });
                 requestAnimationFrame(draw);
             }
             draw();
         })();
 
-        const carousel = document.getElementById('carousel');
-        let isDown = false, startX, scrollLeft2;
-        let autoScrollPaused = false;
-        setInterval(() => { if (!autoScrollPaused) { carousel.scrollLeft += 1.2; if (carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth - 2) carousel.scrollLeft = 0; } }, 16);
-        carousel.addEventListener('mouseenter', () => autoScrollPaused = true);
-        carousel.addEventListener('mouseleave', () => { autoScrollPaused = false; isDown = false; });
-        carousel.addEventListener('mousedown', e => { isDown = true; startX = e.pageX - carousel.offsetLeft; scrollLeft2 = carousel.scrollLeft; });
-        carousel.addEventListener('mouseup', () => isDown = false);
-        carousel.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); carousel.scrollLeft = scrollLeft2 - (e.pageX - carousel.offsetLeft - startX) * 1.5; });
-        let touchStartX = 0, touchScrollLeft = 0;
-        carousel.addEventListener('touchstart', e => { autoScrollPaused = true; touchStartX = e.touches[0].pageX; touchScrollLeft = carousel.scrollLeft; });
-        carousel.addEventListener('touchend', () => autoScrollPaused = false);
-        carousel.addEventListener('touchmove', e => { carousel.scrollLeft = touchScrollLeft - (e.touches[0].pageX - touchStartX); });
+ // ── Carousel — smooth auto scroll + drag ──
+const carousel = document.getElementById('carousel');
+let isDown = false, startX, scrollLeft2;
+let paused = false;
+let scrollPos = 0;
+let lastTimestamp = null;
+const SPEED = 0.4; // pixels per ms — கூட்டினா வேகமாகும்
 
+function smoothAutoScroll(timestamp) {
+    if (lastTimestamp === null) lastTimestamp = timestamp;
+    const delta = timestamp - lastTimestamp;
+    lastTimestamp = timestamp;
+
+    if (!paused && !isDown) {
+        scrollPos += SPEED * delta;
+        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+        if (scrollPos >= maxScroll) scrollPos = 0;
+        carousel.scrollLeft = scrollPos;
+    } else {
+        scrollPos = carousel.scrollLeft;
+    }
+    requestAnimationFrame(smoothAutoScroll);
+}
+requestAnimationFrame(smoothAutoScroll);
+
+// Hover pause
+carousel.addEventListener('mouseenter', () => paused = true);
+carousel.addEventListener('mouseleave', () => { paused = false; isDown = false; carousel.style.cursor = 'grab'; });
+
+// Mouse drag
+carousel.addEventListener('mousedown', e => {
+    isDown = true;
+    paused = true;
+    carousel.style.cursor = 'grabbing';
+    startX = e.pageX - carousel.offsetLeft;
+    scrollLeft2 = carousel.scrollLeft;
+});
+document.addEventListener('mouseup', () => {
+    if (isDown) {
+        isDown = false;
+        paused = false;
+        carousel.style.cursor = 'grab';
+    }
+});
+carousel.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    e.preventDefault();
+    carousel.scrollLeft = scrollLeft2 - (e.pageX - carousel.offsetLeft - startX) * 1.5;
+});
+
+// Touch drag
+let touchStartX = 0, touchScrollLeft = 0;
+carousel.addEventListener('touchstart', e => {
+    paused = true;
+    touchStartX = e.touches[0].pageX;
+    touchScrollLeft = carousel.scrollLeft;
+}, { passive: true });
+carousel.addEventListener('touchend', () => paused = false);
+carousel.addEventListener('touchmove', e => {
+    carousel.scrollLeft = touchScrollLeft - (e.touches[0].pageX - touchStartX);
+}, { passive: true });
+        
+        carousel.addEventListener('touchend', () => autoScrollPaused = false);
+        carousel.addEventListener('touchmove', e => {
+            carousel.scrollLeft = touchScrollLeft - (e.touches[0].pageX - touchStartX);
+        });
+
+        // ── Nav active state ──
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('nav a[href^="#"]');
-        window.addEventListener('scroll', () => { let current = ''; sections.forEach(s => { if (window.scrollY >= s.offsetTop - 200) current = s.id; }); navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current)); });
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(s => { if (window.scrollY >= s.offsetTop - 200) current = s.id; });
+            navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+        });
 
+        // ── Scroll reveal ──
         const reveals = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.12 });
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.12 });
         reveals.forEach(r => observer.observe(r));
 
+        // ── Lightbox ──
         const lbData = [
             { src: 'WhatsApp_Image_2025-08-21_at_4_58_15_PM.jpeg', label: 'Colombia Instant Coffee – Product Ad' },
             { src: '_mango.jpg', label: 'Maaza Mango Juice – Product Poster' },
@@ -1557,14 +1658,27 @@
         const lbImg = document.getElementById('lightbox-img');
         const lbLbl = document.getElementById('lightbox-label');
         const lbCounter = document.getElementById('lb-counter');
+
         function openLightbox(idx) { lbCurrent = idx; updateLb(); lb.classList.add('active'); document.body.style.overflow = 'hidden'; }
         function closeLightbox() { lb.classList.remove('active'); document.body.style.overflow = ''; }
         function updateLb() { lbImg.src = lbData[lbCurrent].src; lbLbl.textContent = lbData[lbCurrent].label; lbCounter.textContent = (lbCurrent + 1) + ' / ' + lbData.length; }
         function lbNav(dir) { lbCurrent = (lbCurrent + dir + lbData.length) % lbData.length; lbImg.style.animation = 'none'; lbImg.offsetHeight; lbImg.style.animation = ''; updateLb(); }
-        document.getElementById('lightbox').addEventListener('click', function (e) { if (e.target === this) closeLightbox(); });
-        document.addEventListener('keydown', e => { if (!lb.classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') lbNav(1); if (e.key === 'ArrowLeft') lbNav(-1); });
 
-        function toggleSkill(card, key) { const isOpen = card.classList.contains('open'); document.querySelectorAll('.skill-card').forEach(c => c.classList.remove('open')); document.querySelectorAll('.skill-panel').forEach(p => p.classList.remove('open')); if (!isOpen) { card.classList.add('open'); document.getElementById('panel-' + key).classList.add('open'); } }
+        document.getElementById('lightbox').addEventListener('click', function (e) { if (e.target === this) closeLightbox(); });
+        document.addEventListener('keydown', e => {
+            if (!lb.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') lbNav(1);
+            if (e.key === 'ArrowLeft') lbNav(-1);
+        });
+
+        // ── Skills toggle ──
+        function toggleSkill(card, key) {
+            const isOpen = card.classList.contains('open');
+            document.querySelectorAll('.skill-card').forEach(c => c.classList.remove('open'));
+            document.querySelectorAll('.skill-panel').forEach(p => p.classList.remove('open'));
+            if (!isOpen) { card.classList.add('open'); document.getElementById('panel-' + key).classList.add('open'); }
+        }
     </script>
 </body>
 
