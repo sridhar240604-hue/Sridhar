@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SridharUI/UX Designer</title>
+    <title>Sridhar – UI/UX Designer</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Instrument+Serif:ital@0;1&family=Satoshi:wght@300;400;500;700&display=swap"
         rel="stylesheet">
@@ -44,37 +44,38 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 22px;
-            height: 22px;
-            border: 1.5px solid rgba(224, 48, 48, 0.85);
+            width: 20px;
+            height: 20px;
+            border: 1.5px solid rgba(255, 255, 255, 0.8);
             border-radius: 50%;
             pointer-events: none;
             z-index: 99999;
             transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s, border-color 0.3s, background 0.3s
+            transition: width .25s, height .25s, border-color .25s, background .25s
         }
 
         #cursor-dot {
             position: fixed;
             top: 0;
             left: 0;
-            width: 4px;
-            height: 4px;
-            background: var(--red);
+            width: 5px;
+            height: 5px;
+            background: #fff;
             border-radius: 50%;
             pointer-events: none;
             z-index: 99999;
-            transform: translate(-50%, -50%);
-            transition: transform 0.1s
+            transform: translate(-50%, -50%)
         }
 
         body:has(a:hover) #cursor-ring,
         body:has(button:hover) #cursor-ring,
-        body:has(.skill-card:hover) #cursor-ring {
-            width: 36px;
-            height: 36px;
-            background: rgba(224, 48, 48, 0.08);
-            border-color: var(--red)
+        body:has(.skill-card:hover) #cursor-ring,
+        body:has(.ps-card:hover) #cursor-ring,
+        body:has(.behance-card:hover) #cursor-ring {
+            width: 34px;
+            height: 34px;
+            background: rgba(255, 255, 255, 0.06);
+            border-color: white
         }
 
         #bg-canvas {
@@ -100,7 +101,7 @@
             filter: blur(130px);
             pointer-events: none;
             z-index: 0;
-            opacity: 0.3
+            opacity: .3
         }
 
         .blob-red {
@@ -166,7 +167,7 @@
             font-weight: 500;
             padding: 6px 15px;
             border-radius: 50px;
-            transition: all 0.25s
+            transition: all .25s
         }
 
         nav a:hover {
@@ -192,15 +193,15 @@
         section {
             position: relative;
             z-index: 2;
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 100px 40px 80px
+            padding: 80px 40px 60px
         }
 
         #home {
+            min-height: 100vh;
             text-align: center;
             gap: 0;
             overflow: hidden
@@ -216,21 +217,22 @@
             overflow: hidden;
             display: grid;
             place-items: center;
-            animation: fadeDown 0.8s ease both;
+            animation: fadeDown .8s ease both;
             box-shadow: 0 0 40px rgba(224, 48, 48, 0.25)
         }
 
         .image {
             width: 100%;
-            height: 100%
+            height: 100%;
+            object-fit: cover
         }
 
         .hello-tag {
             font-size: 13px;
             color: var(--muted2);
             margin-bottom: 22px;
-            letter-spacing: 0.5px;
-            animation: fadeDown 0.9s 0.1s ease both;
+            letter-spacing: .5px;
+            animation: fadeDown .9s .1s ease both;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -250,7 +252,7 @@
             font-size: clamp(44px, 7.5vw, 96px);
             font-weight: 900;
             line-height: 1.03;
-            animation: fadeUp 1s 0.2s ease both
+            animation: fadeUp 1s .2s ease both
         }
 
         .home-headline em {
@@ -266,7 +268,7 @@
             margin-top: 26px;
             max-width: 500px;
             line-height: 1.7;
-            animation: fadeUp 1s 0.35s ease both
+            animation: fadeUp 1s .35s ease both
         }
 
         .view-resume {
@@ -280,8 +282,8 @@
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 50px;
             padding: 10px 24px;
-            transition: all 0.3s;
-            animation: fadeUp 1s 0.5s ease both
+            transition: all .3s;
+            animation: fadeUp 1s .5s ease both
         }
 
         .view-resume:hover {
@@ -349,7 +351,9 @@
         }
 
         #about {
-            text-align: center
+            min-height: unset;
+            padding: 70px 60px 60px;
+            align-items: center
         }
 
         .section-label {
@@ -371,7 +375,7 @@
         .section-sub {
             color: var(--muted);
             font-size: 15px;
-            margin-bottom: 52px
+            margin-bottom: 44px
         }
 
         .about-text {
@@ -385,7 +389,293 @@
             color: white
         }
 
+        .about-layout {
+            display: flex;
+            align-items: flex-start;
+            gap: 50px;
+            width: 100%;
+            max-width: 1080px;
+            flex-wrap: wrap
+        }
+
+        .about-left {
+            flex: 1;
+            min-width: 260px
+        }
+
+        .about-left .section-label,
+        .about-left .section-title,
+        .about-left .section-sub,
+        .about-left .about-text {
+            text-align: left
+        }
+
+        .about-right {
+            flex: 0 0 340px
+        }
+
+        .photo-slider-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            overflow: hidden;
+            width: 100%;
+            position: relative
+        }
+
+        .photo-slider-track {
+            display: flex;
+            transition: transform .45s cubic-bezier(0.23, 1, 0.32, 1)
+        }
+
+        .photo-slide {
+            flex-shrink: 0;
+            width: 100%;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            cursor: pointer
+        }
+
+        .photo-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .4s ease
+        }
+
+        .photo-slide:hover img {
+            transform: scale(1.04)
+        }
+
+        .photo-slider-nav {
+            position: absolute;
+            bottom: 14px;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px
+        }
+
+        .photo-slider-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            transition: background .2s
+        }
+
+        .photo-slider-btn:hover {
+            background: rgba(0, 0, 0, 0.85)
+        }
+
+        .photo-slider-dots {
+            display: flex;
+            gap: 5px;
+            align-items: center
+        }
+
+        .photo-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all .2s
+        }
+
+        .photo-dot.active {
+            background: white;
+            width: 14px;
+            border-radius: 3px
+        }
+
+        .photo-slider-counter {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 11px;
+            background: rgba(0, 0, 0, 0.55);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 3px 10px;
+            border-radius: 50px;
+            backdrop-filter: blur(4px)
+        }
+
+        /* ===== ABOUT PHOTO LIGHTBOX ===== */
+        #about-lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 99997;
+            background: rgba(0, 0, 0, 0.96);
+            backdrop-filter: blur(16px);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column
+        }
+
+        #about-lightbox.active {
+            display: flex
+        }
+
+        #about-lb-img {
+            max-width: 88vw;
+            max-height: 82vh;
+            object-fit: contain;
+            border-radius: 14px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+            animation: lbIn .3s cubic-bezier(0.23, 1, 0.32, 1) both
+        }
+
+        @keyframes lbIn {
+            from {
+                opacity: 0;
+                transform: scale(0.88)
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1)
+            }
+        }
+
+        #about-lb-counter-label {
+            margin-top: 14px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.45);
+            letter-spacing: .5px
+        }
+
+        #about-lb-close {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-size: 28px;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: color .2s, transform .2s;
+            background: none;
+            border: none;
+            line-height: 1;
+            z-index: 2
+        }
+
+        #about-lb-close:hover {
+            color: white;
+            transform: scale(1.15)
+        }
+
+        #about-lb-nav {
+            position: absolute;
+            bottom: 24px;
+            display: flex;
+            gap: 12px;
+            align-items: center
+        }
+
+        #about-lb-num {
+            font-size: 12px;
+            color: var(--muted);
+            min-width: 50px;
+            text-align: center
+        }
+
+        .lb-arrow {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            color: white;
+            font-size: 16px;
+            transition: all .2s;
+            background: rgba(255, 255, 255, 0.05)
+        }
+
+        .lb-arrow:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4)
+        }
+
+        #proj-lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 99997;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(12px);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column
+        }
+
+        #proj-lightbox.active {
+            display: flex
+        }
+
+        #proj-lightbox-img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+            animation: lbIn .3s cubic-bezier(0.23, 1, 0.32, 1) both
+        }
+
+        #proj-lightbox-label {
+            margin-top: 16px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: .5px
+        }
+
+        #proj-lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-size: 28px;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: color .2s, transform .2s;
+            background: none;
+            border: none;
+            line-height: 1
+        }
+
+        #proj-lightbox-close:hover {
+            color: white;
+            transform: scale(1.15)
+        }
+
+        #proj-lightbox-nav {
+            position: absolute;
+            bottom: 24px;
+            display: flex;
+            gap: 12px;
+            align-items: center
+        }
+
+        #proj-lb-counter {
+            font-size: 12px;
+            color: var(--muted);
+            min-width: 50px;
+            text-align: center
+        }
+
         #skills {
+            min-height: unset;
+            padding: 60px 40px 50px;
             gap: 0
         }
 
@@ -407,7 +697,7 @@
             align-items: center;
             gap: 16px;
             cursor: none;
-            transition: all 0.3s ease;
+            transition: all .3s ease;
             position: relative;
             overflow: hidden
         }
@@ -418,7 +708,7 @@
             inset: 0;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), transparent);
             opacity: 0;
-            transition: opacity 0.3s
+            transition: opacity .3s
         }
 
         .skill-card:hover::before {
@@ -471,7 +761,7 @@
         .chevron {
             color: var(--muted);
             font-size: 15px;
-            transition: transform 0.35s;
+            transition: transform .35s;
             margin-left: auto
         }
 
@@ -482,7 +772,7 @@
         .skill-panel {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: max-height .5s cubic-bezier(0.23, 1, 0.32, 1);
             width: 100%;
             grid-column: 1/-1
         }
@@ -524,7 +814,7 @@
             flex-direction: column;
             align-items: center;
             gap: 10px;
-            transition: all 0.25s;
+            transition: all .25s;
             text-align: center
         }
 
@@ -552,126 +842,48 @@
             font-weight: 500
         }
 
-        #contact {
-            text-align: center
-        }
-
-        .linkedin-card {
-            margin-top: 40px;
-            background: linear-gradient(135deg, rgba(10, 102, 194, 0.15), rgba(10, 102, 194, 0.05));
-            border: 1px solid rgba(10, 102, 194, 0.4);
-            border-radius: 20px;
-            padding: 36px 44px;
-            max-width: 400px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-            text-decoration: none;
-            color: white;
-            transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
-            position: relative;
-            overflow: hidden
-        }
-
-        .linkedin-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 50% 0%, rgba(10, 102, 194, 0.18) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.35s
-        }
-
-        .linkedin-card:hover::before {
-            opacity: 1
-        }
-
-        .linkedin-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(10, 102, 194, 0.8);
-            box-shadow: 0 20px 60px rgba(10, 102, 194, 0.25), 0 0 0 1px rgba(10, 102, 194, 0.2)
-        }
-
-        .linkedin-icon {
-            width: 56px;
-            height: 56px;
-            background: #0a66c2;
-            border-radius: 14px;
-            display: grid;
-            place-items: center;
-            font-size: 28px;
-            box-shadow: 0 8px 24px rgba(10, 102, 194, 0.4)
-        }
-
-        .linkedin-card-name {
-            font-family: 'Cabinet Grotesk', sans-serif;
-            font-size: 22px;
-            font-weight: 900;
-            letter-spacing: -0.3px
-        }
-
-        .linkedin-card-role {
-            font-size: 13px;
-            color: var(--muted2);
-            letter-spacing: 0.3px
-        }
-
-        .linkedin-card-btn {
-            margin-top: 8px;
-            background: #0a66c2;
-            color: white;
-            font-size: 13px;
-            font-weight: 700;
-            padding: 10px 28px;
-            border-radius: 50px;
-            letter-spacing: 0.5px;
-            transition: background 0.2s
-        }
-
-        .linkedin-card:hover .linkedin-card-btn {
-            background: #1a80d9
-        }
-
-        .linkedin-divider {
-            width: 40px;
-            height: 1px;
-            background: rgba(10, 102, 194, 0.35)
-        }
-
         #projects {
             gap: 0;
             text-align: center;
             overflow: hidden;
-            padding-bottom: 60px;
-            min-height: unset;
-            padding-top: 100px
+            padding: 60px 0 50px;
+            min-height: unset
+        }
+
+        #projects .section-label,
+        #projects .section-title {
+            padding: 0 40px
         }
 
         .carousel-track-wrap {
             width: 100%;
-            overflow-x: auto;
-            overflow-y: visible;
-            cursor: grab;
-            padding: 30px 60px 20px;
+            overflow: hidden;
+            padding: 30px 0 20px;
             position: relative;
-            z-index: 2;
-            scrollbar-width: none
+            z-index: 2
         }
 
-        .carousel-track-wrap::-webkit-scrollbar {
-            display: none
-        }
-
-        .carousel-track-wrap:active {
-            cursor: grabbing
-        }
-
-        .carousel-track {
+        .carousel-auto-track {
             display: flex;
             gap: 22px;
-            width: max-content
+            width: max-content;
+            padding: 0 60px;
+            animation: carouselScroll 40s linear infinite;
+            will-change: transform
+        }
+
+        .carousel-auto-track:hover {
+            animation-play-state: paused
+        }
+
+        @keyframes carouselScroll {
+            0% {
+                transform: translateX(0)
+            }
+
+            100% {
+                transform: translateX(-50%)
+            }
         }
 
         .ps-card {
@@ -681,7 +893,7 @@
             overflow: hidden;
             border: 1px solid var(--card-border);
             background: var(--card-bg);
-            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.3s, box-shadow 0.4s;
+            transition: transform .4s cubic-bezier(0.23, 1, 0.32, 1), border-color .3s, box-shadow .4s;
             position: relative;
             cursor: pointer
         }
@@ -697,7 +909,7 @@
             aspect-ratio: 4/5;
             object-fit: cover;
             display: block;
-            transition: transform 0.5s ease
+            transition: transform .5s ease
         }
 
         .ps-card:hover img {
@@ -708,7 +920,7 @@
             padding: 12px 16px;
             font-size: 12px;
             color: var(--muted);
-            letter-spacing: 0.5px;
+            letter-spacing: .5px;
             border-top: 1px solid var(--card-border);
             background: rgba(0, 0, 0, 0.4)
         }
@@ -746,100 +958,148 @@
             content: '→'
         }
 
-        #lightbox {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 99998;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(12px);
-            align-items: center;
-            justify-content: center;
-            flex-direction: column
+        /* ===== BEHANCE / WEB DESIGN ===== */
+        #webdesign {
+            min-height: unset;
+            padding: 60px 40px 60px;
+            gap: 0;
+            text-align: center
         }
 
-        #lightbox.active {
-            display: flex
+        .behance-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            width: 100%;
+            max-width: 900px;
+            margin-top: 36px
         }
 
-        #lightbox-img {
-            max-width: 90vw;
-            max-height: 85vh;
-            object-fit: contain;
-            border-radius: 12px;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
-            animation: lbIn 0.3s cubic-bezier(0.23, 1, 0.32, 1) both
-        }
-
-        @keyframes lbIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9)
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1)
-            }
-        }
-
-        #lightbox-label {
-            margin-top: 16px;
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.5);
-            letter-spacing: 0.5px
-        }
-
-        #lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 24px;
-            font-size: 28px;
-            color: rgba(255, 255, 255, 0.5);
+        .behance-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            background: var(--card-bg);
+            text-decoration: none;
+            color: var(--text);
+            display: block;
             cursor: pointer;
-            transition: color 0.2s, transform 0.2s;
-            background: none;
-            border: none;
-            line-height: 1
+            transition: transform .4s cubic-bezier(0.23, 1, 0.32, 1), border-color .3s, box-shadow .4s
         }
 
-        #lightbox-close:hover {
-            color: white;
-            transform: scale(1.15)
+        .behance-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 255, 255, 0.04)
         }
 
-        #lightbox-nav {
+        /* Fixed thumb height so both cards are equal */
+        .behance-thumb {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+            background: #111
+        }
+
+        .behance-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            transition: transform .5s ease
+        }
+
+        .behance-card:hover .behance-thumb img {
+            transform: scale(1.06)
+        }
+
+        .behance-thumb::after {
+            content: '';
             position: absolute;
-            bottom: 24px;
-            display: flex;
-            gap: 12px;
-            align-items: center
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.5) 100%);
+            opacity: 0;
+            transition: opacity .3s
         }
 
-        .lb-arrow {
-            width: 40px;
-            height: 40px;
+        .behance-card:hover .behance-thumb::after {
+            opacity: 1
+        }
+
+        .behance-badge {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: #0057ff;
+            color: white;
+            font-family: 'Cabinet Grotesk', sans-serif;
+            font-weight: 900;
+            font-size: 13px;
+            padding: 4px 12px;
+            border-radius: 6px;
+            letter-spacing: .5px;
+            z-index: 2
+        }
+
+        .behance-open {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.12);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             display: grid;
             place-items: center;
-            cursor: pointer;
-            color: white;
-            font-size: 16px;
-            transition: all 0.2s;
-            background: rgba(255, 255, 255, 0.05)
+            font-size: 14px;
+            opacity: 0;
+            transform: scale(0.7);
+            transition: opacity .25s, transform .25s;
+            z-index: 2
         }
 
-        .lb-arrow:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.4)
+        .behance-card:hover .behance-open {
+            opacity: 1;
+            transform: scale(1)
         }
 
-        #lb-counter {
-            font-size: 12px;
+        .behance-info {
+            padding: 20px 22px 22px
+        }
+
+        .behance-title {
+            font-family: 'Cabinet Grotesk', sans-serif;
+            font-weight: 800;
+            font-size: 18px;
+            margin-bottom: 8px;
+            line-height: 1.2
+        }
+
+        .behance-desc {
+            font-size: 13px;
             color: var(--muted);
-            min-width: 50px;
-            text-align: center
+            line-height: 1.6;
+            margin-bottom: 14px
+        }
+
+        .behance-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px
+        }
+
+        .behance-tag {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: .3px
         }
 
         footer {
@@ -847,7 +1107,7 @@
             z-index: 2;
             border-top: 1px solid var(--card-border);
             background: rgba(8, 8, 8, 0.95);
-            padding: 60px 40px 30px
+            padding: 50px 40px 30px
         }
 
         .footer-inner {
@@ -860,7 +1120,7 @@
             justify-content: space-between;
             align-items: flex-start;
             gap: 40px;
-            margin-bottom: 48px;
+            margin-bottom: 40px;
             flex-wrap: wrap
         }
 
@@ -893,7 +1153,7 @@
             font-family: 'Cabinet Grotesk', sans-serif;
             font-size: 20px;
             font-weight: 900;
-            letter-spacing: -0.3px
+            letter-spacing: -.3px
         }
 
         .footer-tagline {
@@ -931,7 +1191,7 @@
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
-            transition: color 0.2s
+            transition: color .2s
         }
 
         .footer-col ul li a:hover {
@@ -956,7 +1216,7 @@
         .footer-copy {
             font-size: 12px;
             color: var(--muted);
-            letter-spacing: 0.3px
+            letter-spacing: .3px
         }
 
         .footer-copy span {
@@ -966,7 +1226,8 @@
         .footer-socials {
             display: flex;
             align-items: center;
-            gap: 10px
+            gap: 10px;
+            flex-wrap: wrap
         }
 
         .footer-social-link {
@@ -979,7 +1240,7 @@
             text-decoration: none;
             font-size: 13px;
             color: var(--muted);
-            transition: all 0.25s;
+            transition: all .25s;
             padding: 0 14px;
             gap: 6px;
             font-weight: 600;
@@ -1002,6 +1263,17 @@
             border-color: #0a66c2;
             color: white;
             background: rgba(10, 102, 194, 0.15)
+        }
+
+        .footer-social-link.email-link {
+            border-color: rgba(224, 48, 48, 0.3);
+            color: #ff8080
+        }
+
+        .footer-social-link.email-link:hover {
+            border-color: var(--red);
+            color: white;
+            background: rgba(224, 48, 48, 0.12)
         }
 
         .footer-status {
@@ -1030,7 +1302,7 @@
             }
 
             50% {
-                opacity: 0.6;
+                opacity: .6;
                 transform: scale(1.3)
             }
         }
@@ -1097,7 +1369,7 @@
         .reveal {
             opacity: 0;
             transform: translateY(28px);
-            transition: opacity 0.75s ease, transform 0.75s ease
+            transition: opacity .75s ease, transform .75s ease
         }
 
         .reveal.visible {
@@ -1118,6 +1390,17 @@
             border-radius: 3px
         }
 
+        @media(max-width:900px) {
+            .about-layout {
+                flex-direction: column
+            }
+
+            .about-right {
+                flex: 1;
+                width: 100%
+            }
+        }
+
         @media(max-width:640px) {
             .skills-grid {
                 grid-template-columns: 1fr
@@ -1129,10 +1412,6 @@
 
             .tool-grid {
                 grid-template-columns: repeat(auto-fill, minmax(100px, 1fr))
-            }
-
-            .linkedin-card {
-                padding: 28px 24px
             }
 
             .footer-top {
@@ -1148,6 +1427,10 @@
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 16px
+            }
+
+            .behance-grid {
+                grid-template-columns: 1fr
             }
         }
     </style>
@@ -1167,18 +1450,15 @@
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
+        <a href="#webdesign">Web Design</a>
         <a href="#contact" class="btn-contact">Contact</a>
     </nav>
 
+    <!-- HOME -->
     <section id="home">
-        <div class="hero-profile">
-            <img src="1753409339741.jpg" alt="" class="image">
-        </div>
+        <div class="hero-profile"><img src="1753409339741.jpg" alt="" class="image"></div>
         <p class="hello-tag">Hello, I'm Sridhar</p>
-        <h1 class="home-headline">
-            Not just user <em>friendly!</em><br>
-            Effortlessly <em>simple.</em>
-        </h1>
+        <h1 class="home-headline">Not just user <em>friendly!</em><br>Effortlessly <em>simple.</em></h1>
         <p class="home-sub">I focus on making apps easy to use, visually appealing, and accessible for everyone.</p>
         <a href="./resume.html" class="view-resume">View Resume ↗</a>
         <div class="ticker-wrap">
@@ -1204,18 +1484,35 @@
         <div class="scroll-hint">SCROLL</div>
     </section>
 
+    <!-- ABOUT -->
     <section id="about">
-        <div class="section-label reveal">About Me</div>
-        <h2 class="section-title reveal">Who I Am</h2>
-        <p class="section-sub reveal">What I do &amp; why I love it.</p>
-        <p class="about-text reveal">
-            I'm <strong>Sridhar</strong>, a UI/UX Designer passionate about crafting clean, simple, and user-friendly
-            digital experiences. I focus on making apps and websites that feel effortless to use — combining thoughtful
-            design with modern web technologies. My goal is to bridge the gap between beautiful visuals and real
-            usability.
-        </p>
+        <div class="about-layout">
+            <div class="about-left reveal">
+                <div class="section-label">About Me</div>
+                <h2 class="section-title"> I Am</h2>
+                <p class="section-sub">What I do &amp; why I love it.</p>
+                <p class="about-text">
+                    I'm <strong>Sridhar</strong>, a UI/UX Designer passionate about designing meaningful digital
+                    experiences that solve real user problems. I combine user research, interaction design, and modern
+                    design principles to create intuitive interfaces that are both visually compelling and easy to use.
+                    My goal is to deliver products that enhance user satisfaction while supporting business objectives.
+                </p>
+            </div>
+            <div class="about-right reveal">
+                <div class="photo-slider-card">
+                    <div class="photo-slider-track" id="sliderTrack"></div>
+                    <div class="photo-slider-counter" id="sliderCounter">1 / 10</div>
+                    <div class="photo-slider-nav">
+                        <button class="photo-slider-btn" onclick="slideNav(-1)">←</button>
+                        <div class="photo-slider-dots" id="sliderDots"></div>
+                        <button class="photo-slider-btn" onclick="slideNav(1)">→</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
+    <!-- SKILLS -->
     <section id="skills">
         <div class="section-label reveal">What I Know</div>
         <h2 class="section-title reveal">Skills</h2>
@@ -1336,91 +1633,87 @@
         </div>
     </section>
 
+    <!-- PROJECTS -->
     <section id="projects">
         <div class="section-label reveal">What I've Built</div>
         <h2 class="section-title reveal">Projects</h2>
-        <div class="carousel-track-wrap reveal" id="carousel">
-            <div class="carousel-track">
-                <div class="ps-card" onclick="openLightbox(1)">
-                    <span class="ps-card-num">PS · 01</span>
-                    <img src="119.png" alt="Porsche Ad">
-                    <div class="ps-card-label">Porsche – Automotive Poster</div>
-                </div>
-                <div class="ps-card" onclick="openLightbox(2)">
-                    <span class="ps-card-num">PS · 02</span>
-                    <img src="bata.jpg" alt="Bata Sneaker Ad">
-                    <div class="ps-card-label">Bata Black Sneaker – Product Ad</div>
-                </div>
-                <div class="ps-card" onclick="openLightbox(3)">
-                    <span class="ps-card-num">PS · 03</span>
-                    <img src="biriyani.png" alt="Spicy Biriyani">
-                    <div class="ps-card-label">Spicy Biriyani – Restaurant Poster</div>
-                </div>
-                <div class="ps-card" onclick="openLightbox(4)">
-                    <span class="ps-card-num">PS · 04</span>
-                    <img src="BMW.png" alt="BMW Gran Coupe">
-                    <div class="ps-card-label">BMW 8 Series Gran Coupe – Ad</div>
-                </div>
-                <div class="ps-card" onclick="openLightbox(5)">
-                    <span class="ps-card-num">PS · 05</span>
-                    <img src="faashion.jpg" alt="Fashion Festival">
-                    <div class="ps-card-label">Wfash Fashion Festival – Event Poster</div>
-                </div>
-                <div class="ps-card" onclick="openLightbox(6)">
-                    <span class="ps-card-num">PS · 06</span>
-                    <img src="headphone.png" alt="Headphone Ad">
-                    <div class="ps-card-label">Urbanista Miami Headphone – Product Ad</div>
-                </div>
-                <div class="ps-card" onclick="openLightbox(7)">
-                    <span class="ps-card-num">PS · 7</span>
-                    <img src="perfume-post.png" alt="Perfume Post">
-                    <div class="ps-card-label">Perfume – Product Poster</div>
-                </div>
-                <div class="ps-card" onclick="openLightbox(8)">
-                    <span class="ps-card-num">PS · 8</span>
-                    <img src="sprite.png" alt="Sprite Ad">
-                    <div class="ps-card-label">Sprite – Stay Cool Beverage Ad</div>
-                </div>
-                <div class="ps-card" onclick="openLightbox(9)">
-                    <span class="ps-card-num">PS · 9</span>
-                    <img src="taask-10.jpg" alt="Task 10">
-                    <div class="ps-card-label">Account Manager – Internship Poster</div>
-                </div>
-                <div class="ps-card" onclick="openLightbox(10)">
-                    <span class="ps-card-num">PS · 10</span>
-                    <img src="task001.jpg" alt="Graphic Designer">
-                    <div class="ps-card-label">Professional Graphic Designer – Ad</div>
-                </div>
-
-                <div class="ps-card" onclick="openLightbox(11)">
-                    <span class="ps-card-num">PS · 12</span>
-                    <img src="yellow-car.png" alt="Chevrolet Camaro">
-                    <div class="ps-card-label">Chevrolet Camaro – Automotive Poster</div>
-                </div>
-                <div class="ps-card" onclick="openLightbox(12)">
-                    <span class="ps-card-num">PS · 13</span>
-                    <img src="TASK-33.jpg" alt="Fashion Collection">
-                    <div class="ps-card-label">Fashion Collection – Editorial Poster</div>
-                </div>
-
-            </div>
+        <div class="carousel-track-wrap reveal">
+            <div class="carousel-auto-track" id="carousel"></div>
         </div>
-        <div class="carousel-hint reveal">DRAG TO SCROLL</div>
+        <div class="carousel-hint reveal">HOVER TO PAUSE</div>
     </section>
 
-    <div id="lightbox">
-        <button id="lightbox-close" onclick="closeLightbox()">✕</button>
-        <img id="lightbox-img" src="" alt="">
-        <div id="lightbox-label"></div>
-        <div id="lightbox-nav">
-            <div class="lb-arrow" onclick="lbNav(-1)">←</div>
-            <div id="lb-counter"></div>
-            <div class="lb-arrow" onclick="lbNav(1)">→</div>
+    <!-- WEB DESIGN / BEHANCE -->
+    <section id="webdesign">
+        <div class="section-label reveal">Behance Works</div>
+        <h2 class="section-title reveal">Web Design</h2>
+        <p class="section-sub reveal">UI/UX case studies &amp; web designs on Behance.</p>
+        <div class="behance-grid reveal">
+            <!-- Card 1: B Trip Case Study — uses uploaded case_study_banaer.jpg -->
+            <a class="behance-card"
+                href="https://www.behance.net/gallery/248306307/B-TRIP-Smart-planning-smooth-travelling/modules/1437101809"
+                target="_blank" rel="noopener">
+                <div class="behance-thumb">
+                    <img src="case study banaer.jpg" alt="B Trip Case Study">
+                    <div class="behance-badge">Bē</div>
+                    <div class="behance-open">↗</div>
+                </div>
+                <div class="behance-info">
+                    <div class="behance-title">B Trip — AI Travel App</div>
+                    <div class="behance-desc">End-to-end UI/UX design for an AI-powered travel planning app. Research,
+                        wireframes, and Hi-Fi prototype.</div>
+                    <div class="behance-tags"><span class="behance-tag">UI/UX</span><span
+                            class="behance-tag">Figma</span><span class="behance-tag">Case Study</span><span
+                            class="behance-tag">Mobile App</span></div>
+                </div>
+            </a>
+            <!-- Card 2: Car Showroom — uses uploaded Screenshot_2026-05-30_212651.png -->
+            <a class="behance-card"
+                href="https://www.behance.net/gallery/234461737/Car-Showroom-Website/modules/1346496675" target="_blank"
+                rel="noopener">
+                <div class="behance-thumb">
+                    <img src="Screenshot 2026-05-30 212651.png" alt="Car Showroom Website">
+                    <div class="behance-badge">Bē</div>
+                    <div class="behance-open">↗</div>
+                </div>
+                <div class="behance-info">
+                    <div class="behance-title">Car Showroom Website</div>
+                    <div class="behance-desc">Bold automotive web design with split-screen hero, dynamic car showcase,
+                        and high-impact typography.</div>
+                    <div class="behance-tags"><span class="behance-tag">Web Design</span><span
+                            class="behance-tag">Photoshop</span><span class="behance-tag">Automotive</span><span
+                            class="behance-tag">Dark UI</span></div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- ABOUT PHOTO LIGHTBOX -->
+    <div id="about-lightbox">
+        <button id="about-lb-close" onclick="closeAboutLb()">✕</button>
+        <img id="about-lb-img" src="" alt="">
+        <div id="about-lb-counter-label"></div>
+        <div id="about-lb-nav">
+            <div class="lb-arrow" onclick="aboutLbNav(-1)">←</div>
+            <div id="about-lb-num"></div>
+            <div class="lb-arrow" onclick="aboutLbNav(1)">→</div>
         </div>
     </div>
 
-   
-    <footer>
+    <!-- PROJECT LIGHTBOX -->
+    <div id="proj-lightbox">
+        <button id="proj-lightbox-close" onclick="closeProjLightbox()">✕</button>
+        <img id="proj-lightbox-img" src="" alt="">
+        <div id="proj-lightbox-label"></div>
+        <div id="proj-lightbox-nav">
+            <div class="lb-arrow" onclick="projLbNav(-1)">←</div>
+            <div id="proj-lb-counter"></div>
+            <div class="lb-arrow" onclick="projLbNav(1)">→</div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer id="contact">
         <div class="footer-inner">
             <div class="footer-top">
                 <div class="footer-brand">
@@ -1430,8 +1723,7 @@
                     </div>
                     <p class="footer-tagline">UI/UX Designer crafting clean, effortless digital experiences.</p>
                     <div class="footer-status">
-                        <div class="footer-status-dot"></div>
-                        Available for opportunities
+                        <div class="footer-status-dot"></div>Available for opportunities
                     </div>
                 </div>
                 <div class="footer-links-group">
@@ -1442,7 +1734,7 @@
                             <li><a href="#about">About</a></li>
                             <li><a href="#skills">Skills</a></li>
                             <li><a href="#projects">Projects</a></li>
-                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="#webdesign">Web Design</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
@@ -1461,211 +1753,159 @@
             <div class="footer-bottom">
                 <p class="footer-copy">© 2025 <span>Sridhar</span> · All rights reserved.</p>
                 <div class="footer-socials">
+                    <a href="mailto:sridhar240604@gmail.com" class="footer-social-link email-link">✉️
+                        sridhar240604@gmail.com</a>
                     <a href="https://www.linkedin.com/in/sri-dhar-4983b7293" target="_blank"
-                        class="footer-social-link linkedin-link" title="LinkedIn">
-                        💼 LinkedIn
-                    </a>
-                    <a href="#home" class="footer-social-link" title="Back to top">↑</a>
+                        class="footer-social-link linkedin-link">💼 LinkedIn</a>
+                    <a href="https://www.behance.net/sridhar40" target="_blank" class="footer-social-link">Bē
+                        Behance</a>
+                    <a href="#home" class="footer-social-link">↑</a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // ── Cursor ──
-        const ring = document.getElementById('cursor-ring');
-        const dot = document.getElementById('cursor-dot');
-        let mx = window.innerWidth / 2, my = window.innerHeight / 2;
-        let rx = mx, ry = my;
-        document.addEventListener('mousemove', e => {
-            mx = e.clientX; my = e.clientY;
-            dot.style.left = mx + 'px'; dot.style.top = my + 'px';
-        });
-        (function animRing() {
-            rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-            ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-            requestAnimationFrame(animRing);
-        })();
+        // CURSOR
+        const ring = document.getElementById('cursor-ring'), dot = document.getElementById('cursor-dot');
+        let mx = window.innerWidth / 2, my = window.innerHeight / 2, rx = mx, ry = my;
+        document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx + 'px'; dot.style.top = my + 'px' });
+        (function animRing() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animRing) })();
 
-        // ── Background canvas ──
+        // BACKGROUND CANVAS
         (function () {
-            const canvas = document.getElementById('bg-canvas');
-            const ctx = canvas.getContext('2d');
-            function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+            const canvas = document.getElementById('bg-canvas'), ctx = canvas.getContext('2d');
+            function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight }
             resize(); window.addEventListener('resize', resize);
-            const nodes = Array.from({ length: 70 }, () => ({
-                x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight,
-                z: Math.random() * 2 + 0.3, vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
-                r: Math.random() * 1.8 + 0.4, pulse: Math.random() * Math.PI * 2
-            }));
-            const rings = Array.from({ length: 5 }, (_, i) => ({
-                cx: Math.random() * window.innerWidth, cy: Math.random() * window.innerHeight,
-                radius: 60 + Math.random() * 120, speed: 0.003 + Math.random() * 0.004,
-                angle: Math.random() * Math.PI * 2, tilt: Math.random() * 0.6 + 0.2,
-                color: i % 2 === 0 ? '224,48,48' : '30,80,200'
-            }));
+            const nodes = Array.from({ length: 60 }, () => ({ x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight, z: Math.random() * 2 + .3, vx: (Math.random() - .5) * .3, vy: (Math.random() - .5) * .3, r: Math.random() * 1.8 + .4, pulse: Math.random() * Math.PI * 2 }));
+            const rings = Array.from({ length: 4 }, (_, i) => ({ cx: Math.random() * window.innerWidth, cy: Math.random() * window.innerHeight, radius: 60 + Math.random() * 120, speed: .003 + Math.random() * .004, angle: Math.random() * Math.PI * 2, tilt: Math.random() * .6 + .2, color: i % 2 === 0 ? '224,48,48' : '30,80,200' }));
             function draw() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                for (let i = 0; i < nodes.length; i++) {
-                    for (let j = i + 1; j < nodes.length; j++) {
-                        const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y, dist = Math.sqrt(dx * dx + dy * dy);
-                        if (dist < 140) {
-                            ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y);
-                            ctx.strokeStyle = `rgba(224,48,48,${(1 - dist / 140) * 0.07 * nodes[i].z})`; ctx.lineWidth = 0.5; ctx.stroke();
-                        }
-                    }
-                }
-                nodes.forEach(n => {
-                    n.pulse += 0.02;
-                    ctx.beginPath(); ctx.arc(n.x, n.y, n.r * n.z * (1 + 0.4 * Math.sin(n.pulse)), 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(224,48,48,${0.2 + 0.15 * n.z})`; ctx.fill();
-                    n.x += n.vx * n.z; n.y += n.vy * n.z;
-                    if (n.x < -10) n.x = canvas.width + 10; if (n.x > canvas.width + 10) n.x = -10;
-                    if (n.y < -10) n.y = canvas.height + 10; if (n.y > canvas.height + 10) n.y = -10;
-                });
-                rings.forEach(r => {
-                    r.angle += r.speed;
-                    const px = r.cx + Math.cos(r.angle) * r.radius, py = r.cy + Math.sin(r.angle) * r.radius * r.tilt;
-                    ctx.beginPath(); ctx.ellipse(r.cx, r.cy, r.radius, r.radius * r.tilt, 0, 0, Math.PI * 2);
-                    ctx.strokeStyle = `rgba(${r.color},0.06)`; ctx.lineWidth = 1; ctx.stroke();
-                    ctx.beginPath(); ctx.arc(px, py, 2.5, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(${r.color},0.5)`; ctx.fill();
-                });
+                for (let i = 0; i < nodes.length; i++) { for (let j = i + 1; j < nodes.length; j++) { const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y, dist = Math.sqrt(dx * dx + dy * dy); if (dist < 140) { ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y); ctx.strokeStyle = `rgba(224,48,48,${(1 - dist / 140) * .07 * nodes[i].z})`; ctx.lineWidth = .5; ctx.stroke() } } }
+                nodes.forEach(n => { n.pulse += .02; ctx.beginPath(); ctx.arc(n.x, n.y, n.r * n.z * (1 + .4 * Math.sin(n.pulse)), 0, Math.PI * 2); ctx.fillStyle = `rgba(224,48,48,${.2 + .15 * n.z})`; ctx.fill(); n.x += n.vx * n.z; n.y += n.vy * n.z; if (n.x < -10) n.x = canvas.width + 10; if (n.x > canvas.width + 10) n.x = -10; if (n.y < -10) n.y = canvas.height + 10; if (n.y > canvas.height + 10) n.y = -10 });
+                rings.forEach(r => { r.angle += r.speed; const px = r.cx + Math.cos(r.angle) * r.radius, py = r.cy + Math.sin(r.angle) * r.radius * r.tilt; ctx.beginPath(); ctx.ellipse(r.cx, r.cy, r.radius, r.radius * r.tilt, 0, 0, Math.PI * 2); ctx.strokeStyle = `rgba(${r.color},0.06)`; ctx.lineWidth = 1; ctx.stroke(); ctx.beginPath(); ctx.arc(px, py, 2.5, 0, Math.PI * 2); ctx.fillStyle = `rgba(${r.color},0.5)`; ctx.fill() });
                 requestAnimationFrame(draw);
             }
             draw();
         })();
 
-        // ── Carousel — smooth auto scroll + drag ──
-        const carousel = document.getElementById('carousel');
-        let isDown = false, startX, scrollLeft2;
-        let paused = false;
-        let scrollPos = 0;
-        let lastTimestamp = null;
-        const SPEED = 0.4; // pixels per ms — கூட்டினா வேகமாகும்
+        // NAV ACTIVE
+        const sections = document.querySelectorAll('section'), navLinks = document.querySelectorAll('nav a[href^="#"]');
+        window.addEventListener('scroll', () => { let c = ''; sections.forEach(s => { if (window.scrollY >= s.offsetTop - 200) c = s.id }); navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + c)) }, { passive: true });
 
-        function smoothAutoScroll(timestamp) {
-            if (lastTimestamp === null) lastTimestamp = timestamp;
-            const delta = timestamp - lastTimestamp;
-            lastTimestamp = timestamp;
-
-            if (!paused && !isDown) {
-                scrollPos += SPEED * delta;
-                const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-                if (scrollPos >= maxScroll) scrollPos = 0;
-                carousel.scrollLeft = scrollPos;
-            } else {
-                scrollPos = carousel.scrollLeft;
-            }
-            requestAnimationFrame(smoothAutoScroll);
-        }
-        requestAnimationFrame(smoothAutoScroll);
-
-        // Hover pause
-        carousel.addEventListener('mouseenter', () => paused = true);
-        carousel.addEventListener('mouseleave', () => { paused = false; isDown = false; carousel.style.cursor = 'grab'; });
-
-        // Mouse drag
-        carousel.addEventListener('mousedown', e => {
-            isDown = true;
-            paused = true;
-            carousel.style.cursor = 'grabbing';
-            startX = e.pageX - carousel.offsetLeft;
-            scrollLeft2 = carousel.scrollLeft;
-        });
-        document.addEventListener('mouseup', () => {
-            if (isDown) {
-                isDown = false;
-                paused = false;
-                carousel.style.cursor = 'grab';
-            }
-        });
-        carousel.addEventListener('mousemove', e => {
-            if (!isDown) return;
-            e.preventDefault();
-            carousel.scrollLeft = scrollLeft2 - (e.pageX - carousel.offsetLeft - startX) * 1.5;
-        });
-
-        // Touch drag
-        let touchStartX = 0, touchScrollLeft = 0;
-        carousel.addEventListener('touchstart', e => {
-            paused = true;
-            touchStartX = e.touches[0].pageX;
-            touchScrollLeft = carousel.scrollLeft;
-        }, { passive: true });
-        carousel.addEventListener('touchend', () => paused = false);
-        carousel.addEventListener('touchmove', e => {
-            carousel.scrollLeft = touchScrollLeft - (e.touches[0].pageX - touchStartX);
-        }, { passive: true });
-
-        carousel.addEventListener('touchend', () => autoScrollPaused = false);
-        carousel.addEventListener('touchmove', e => {
-            carousel.scrollLeft = touchScrollLeft - (e.touches[0].pageX - touchStartX);
-        });
-
-        // ── Nav active state ──
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('nav a[href^="#"]');
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(s => { if (window.scrollY >= s.offsetTop - 200) current = s.id; });
-            navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
-        });
-
-        // ── Scroll reveal ──
+        // SCROLL REVEAL
         const reveals = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-        }, { threshold: 0.12 });
+        const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') }) }, { threshold: 0.12 });
         reveals.forEach(r => observer.observe(r));
 
-        // ── Lightbox ──
-        const lbData = [
-            { src: 'WhatsApp_Image_2025-08-21_at_4_58_15_PM.jpeg', label: 'Colombia Instant Coffee – Product Ad' },
-            { src: '_mango.jpg', label: 'Maaza Mango Juice – Product Poster' },
-            { src: '119.png', label: 'Porsche – Automotive Poster' },
-            { src: 'bata.jpg', label: 'Bata Black Sneaker – Product Ad' },
-            { src: 'biriyani.png', label: 'Spicy Biriyani – Restaurant Poster' },
-            { src: 'BMW.png', label: 'BMW 8 Series Gran Coupe – Ad' },
-            { src: 'coffee.jpg', label: 'Buy 1 Get 1 Coffee Offer – Promo' },
-            { src: 'faashion.jpg', label: 'Wfash Fashion Festival – Event Poster' },
-            { src: 'headphone.png', label: 'Urbanista Miami Headphone – Product Ad' },
-            { src: 'perfume-post.png', label: 'Perfume – Product Poster' },
-            { src: 'sprite.png', label: 'Sprite – Stay Cool Beverage Ad' },
-            { src: 'taask-10.jpg', label: 'Account Manager – Internship Poster' },
-            { src: 'task001.jpg', label: 'Professional Graphic Designer – Ad' },
-            { src: 'task-12.jpg', label: 'Yamaha MT-15 – Automotive Poster' },
-            { src: 'bike.png', label: 'Ducati – Speed with a Soul Poster' },
-            { src: 'yellow-car.png', label: 'Chevrolet Camaro – Automotive Poster' },
-            { src: 'TASK-33.jpg', label: 'Fashion Collection – Editorial Poster' },
-            { src: 'WhatsApp_Image_2025-08-16_at_7_06_10_PM.jpeg', label: 'Fresh Sprite – Beverage Ad' },
-            { src: 'WhatsApp_Image_2025-08-25_at_11_29_08_AM.jpeg', label: 'We Are Hiring – Recruitment Poster' },
+        // ✅ ABOUT PHOTO SLIDER — correct uploaded filenames
+        const aboutPhotos = [
+            'WhatsApp Image 2026-05-23 at 9.10.08 PM.jpeg',
+            'WhatsApp Image 2026-05-23 at 9.07.41 PM (1).jpeg',
+            'WhatsApp Image 2026-05-23 at 9.10.07 PM.jpeg',
+            'WhatsApp Image 2026-05-23 at 9.07.42 PM (1).jpeg',
+            'WhatsApp Image 2026-05-23 at 9.07.42 PM.jpeg',
+            'WhatsApp Image 2026-05-23 at 9.07.44 PM.jpeg',
+            'WhatsApp Image 2026-05-23 at 9.10.07 PM (1).jpeg',
+            'WhatsApp Image 2026-05-23 at 9.10.07 PM (2).jpeg',
+            'WhatsApp Image 2026-05-23 at 9.07.40 PM.jpeg',
+            'WhatsApp Image 2026-05-23 at 9.10.08 PM (1).jpeg'
         ];
-        let lbCurrent = 0;
-        const lb = document.getElementById('lightbox');
-        const lbImg = document.getElementById('lightbox-img');
-        const lbLbl = document.getElementById('lightbox-label');
-        const lbCounter = document.getElementById('lb-counter');
+        let sliderIdx = 0;
+        const track = document.getElementById('sliderTrack'), counter = document.getElementById('sliderCounter'), dotsWrap = document.getElementById('sliderDots');
+        counter.textContent = '1 / ' + aboutPhotos.length;
+        aboutPhotos.forEach((src, i) => {
+            const s = document.createElement('div');
+            s.className = 'photo-slide';
+            s.innerHTML = `<img src="${src}" alt="Photo ${i + 1}" loading="lazy">`;
+            s.onclick = () => openAboutLb(i);
+            track.appendChild(s);
+        });
+        aboutPhotos.forEach((_, i) => { const d = document.createElement('div'); d.className = 'photo-dot' + (i === 0 ? ' active' : ''); d.onclick = () => goSlide(i); dotsWrap.appendChild(d) });
+        function goSlide(i) { sliderIdx = i; track.style.transform = `translateX(-${i * 100}%)`; counter.textContent = (i + 1) + ' / ' + aboutPhotos.length; dotsWrap.querySelectorAll('.photo-dot').forEach((d, j) => d.classList.toggle('active', j === i)) }
+        function slideNav(dir) { goSlide((sliderIdx + dir + aboutPhotos.length) % aboutPhotos.length) }
 
-        function openLightbox(idx) { lbCurrent = idx; updateLb(); lb.classList.add('active'); document.body.style.overflow = 'hidden'; }
-        function closeLightbox() { lb.classList.remove('active'); document.body.style.overflow = ''; }
-        function updateLb() { lbImg.src = lbData[lbCurrent].src; lbLbl.textContent = lbData[lbCurrent].label; lbCounter.textContent = (lbCurrent + 1) + ' / ' + lbData.length; }
-        function lbNav(dir) { lbCurrent = (lbCurrent + dir + lbData.length) % lbData.length; lbImg.style.animation = 'none'; lbImg.offsetHeight; lbImg.style.animation = ''; updateLb(); }
+        // ✅ ABOUT PHOTO LIGHTBOX
+        const aboutLb = document.getElementById('about-lightbox');
+        const aboutLbImg = document.getElementById('about-lb-img');
+        const aboutLbLabel = document.getElementById('about-lb-counter-label');
+        const aboutLbNum = document.getElementById('about-lb-num');
+        let aboutLbCurrent = 0;
+        function openAboutLb(idx) {
+            aboutLbCurrent = idx;
+            updateAboutLb();
+            aboutLb.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeAboutLb() { aboutLb.classList.remove('active'); document.body.style.overflow = ''; }
+        function updateAboutLb() {
+            aboutLbImg.src = aboutPhotos[aboutLbCurrent];
+            aboutLbImg.style.animation = 'none';
+            aboutLbImg.offsetHeight;
+            aboutLbImg.style.animation = '';
+            aboutLbNum.textContent = (aboutLbCurrent + 1) + ' / ' + aboutPhotos.length;
+        }
+        function aboutLbNav(dir) {
+            aboutLbCurrent = (aboutLbCurrent + dir + aboutPhotos.length) % aboutPhotos.length;
+            updateAboutLb();
+        }
+        aboutLb.addEventListener('click', function (e) { if (e.target === this) closeAboutLb() });
 
-        document.getElementById('lightbox').addEventListener('click', function (e) { if (e.target === this) closeLightbox(); });
-        document.addEventListener('keydown', e => {
-            if (!lb.classList.contains('active')) return;
-            if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowRight') lbNav(1);
-            if (e.key === 'ArrowLeft') lbNav(-1);
+        // ✅ PROJECT CAROUSEL
+        const projData = [
+            { src: '119.png', label: 'Porsche – Automotive Poster', num: 'PS · 01' },
+            { src: 'bata.jpg', label: 'Bata Black Sneaker – Product Ad', num: 'PS · 02' },
+            { src: 'biriyani.png', label: 'Spicy Biriyani – Restaurant Poster', num: 'PS · 03' },
+            { src: 'BMW.png', label: 'BMW 8 Series Gran Coupe – Ad', num: 'PS · 04' },
+            { src: 'faashion.jpg', label: 'Wfash Fashion Festival – Event Poster', num: 'PS · 05' },
+            { src: 'headphone.png', label: 'Urbanista Miami Headphone – Product Ad', num: 'PS · 06' },
+            { src: 'perfume-post.png', label: 'Perfume – Product Poster', num: 'PS · 07' },
+            { src: 'sprite.png', label: 'Sprite – Stay Cool Beverage Ad', num: 'PS · 08' },
+            { src: 'yellow-car.png', label: 'Chevrolet Camaro – Automotive Poster', num: 'PS · 09' },
+            { src: 'taask-10.jpg', label: 'Account Manager – Internship Poster', num: 'PS · 09' },
+            { src: 'task001.jpg', label: 'Professional Graphic Designer – Ad', num: 'PS · 10' },
+            { src: 'yellow-car.png', label: 'Chevrolet Camaro – Automotive Poster', num: 'PS · 11' },
+            { src: 'TASK-33.jpg', label: 'Fashion Collection – Editorial Poster', num: 'PS · 12' },
+        ];
+        const carousel = document.getElementById('carousel');
+        [...projData, ...projData].forEach((p, i) => {
+            const card = document.createElement('div');
+            card.className = 'ps-card';
+            card.innerHTML = `<span class="ps-card-num">${p.num}</span><img src="${p.src}" alt="${p.label}" loading="lazy"><div class="ps-card-label">${p.label}</div>`;
+            card.onclick = () => openProjLightbox(i % projData.length);
+            carousel.appendChild(card);
         });
 
-        // ── Skills toggle ──
+        // PROJECT LIGHTBOX
+        let projLbCurrent = 0;
+        const plb = document.getElementById('proj-lightbox'), plbImg = document.getElementById('proj-lightbox-img'), plbLbl = document.getElementById('proj-lightbox-label'), plbCounter = document.getElementById('proj-lb-counter');
+        function openProjLightbox(idx) { projLbCurrent = idx; updateProjLb(); plb.classList.add('active'); document.body.style.overflow = 'hidden' }
+        function closeProjLightbox() { plb.classList.remove('active'); document.body.style.overflow = 'active' }
+        function updateProjLb() { plbImg.src = projData[projLbCurrent].src; plbLbl.textContent = projData[projLbCurrent].label; plbCounter.textContent = (projLbCurrent + 1) + ' / ' + projData.length }
+        function projLbNav(dir) { projLbCurrent = (projLbCurrent + dir + projData.length) % projData.length; plbImg.style.animation = 'none'; plbImg.offsetHeight; plbImg.style.animation = ''; updateProjLb() }
+        plb.addEventListener('click', function (e) { if (e.target === this) closeProjLightbox() });
+
+        // KEYBOARD NAV
+        document.addEventListener('keydown', e => {
+            if (aboutLb.classList.contains('active')) {
+                if (e.key === 'Escape') closeAboutLb();
+                if (e.key === 'ArrowRight') aboutLbNav(1);
+                if (e.key === 'ArrowLeft') aboutLbNav(-1);
+                return;
+            }
+            if (plb.classList.contains('active')) {
+                if (e.key === 'Escape') closeProjLightbox();
+                if (e.key === 'ArrowRight') projLbNav(1);
+                if (e.key === 'ArrowLeft') projLbNav(-1);
+            }
+        });
+
+        // SKILLS TOGGLE
         function toggleSkill(card, key) {
             const isOpen = card.classList.contains('open');
             document.querySelectorAll('.skill-card').forEach(c => c.classList.remove('open'));
             document.querySelectorAll('.skill-panel').forEach(p => p.classList.remove('open'));
-            if (!isOpen) { card.classList.add('open'); document.getElementById('panel-' + key).classList.add('open'); }
+            if (!isOpen) { card.classList.add('open'); document.getElementById('panel-' + key).classList.add('open') }
         }
     </script>
 </body>
