@@ -36,46 +36,7 @@
             background: var(--bg);
             color: var(--text);
             font-family: 'Satoshi', sans-serif;
-            overflow-x: hidden;
-            cursor: none
-        }
-
-        #cursor-ring {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 20px;
-            height: 20px;
-            border: 1.5px solid rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 99999;
-            transform: translate(-50%, -50%);
-            transition: width .25s, height .25s, border-color .25s, background .25s
-        }
-
-        #cursor-dot {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 5px;
-            background: #fff;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 99999;
-            transform: translate(-50%, -50%)
-        }
-
-        body:has(a:hover) #cursor-ring,
-        body:has(button:hover) #cursor-ring,
-        body:has(.skill-card:hover) #cursor-ring,
-        body:has(.ps-card:hover) #cursor-ring,
-        body:has(.behance-card:hover) #cursor-ring {
-            width: 34px;
-            height: 34px;
-            background: rgba(255, 255, 255, 0.06);
-            border-color: white
+            overflow-x: hidden
         }
 
         #bg-canvas {
@@ -696,7 +657,7 @@
             display: flex;
             align-items: center;
             gap: 16px;
-            cursor: none;
+            cursor: pointer;
             transition: all .3s ease;
             position: relative;
             overflow: hidden
@@ -1437,8 +1398,6 @@
 </head>
 
 <body>
-    <div id="cursor-ring"></div>
-    <div id="cursor-dot"></div>
     <canvas id="bg-canvas"></canvas>
     <div class="blob blob-red"></div>
     <div class="blob blob-blue"></div>
@@ -1615,9 +1574,9 @@
                 <div class="skill-panel-inner">
                     <h4>Tools &amp; Skills</h4>
                     <div class="tool-grid">
-                        <div class="tool-item"><img
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh5loN0Qj9vGO-bMknVGbR-k6S-lSJDtPIBw&s"
-                                alt="CapCut"><span>CapCut</span></div>
+                        <div class="tool-item">
+                            <div class="tool-emoji">🎞️</div><span>CapCut</span>
+                        </div>
                         <div class="tool-item">
                             <div class="tool-emoji">🎬</div><span>Video Editing</span>
                         </div>
@@ -1652,7 +1611,7 @@
             <!-- Card 1: B Trip Case Study — uses uploaded case_study_banaer.jpg -->
             <a class="behance-card"
                 href="https://www.behance.net/gallery/248306307/B-TRIP-Smart-planning-smooth-travelling/modules/1437101809"
-                target="_blank" rel="noopener">
+                target="_blank" rel="noopener noreferrer">
                 <div class="behance-thumb">
                     <img src="case study banaer.jpg" alt="B Trip Case Study">
                     <div class="behance-badge">Bē</div>
@@ -1670,7 +1629,7 @@
             <!-- Card 2: Car Showroom — uses uploaded Screenshot_2026-05-30_212651.png -->
             <a class="behance-card"
                 href="https://www.behance.net/gallery/234461737/Car-Showroom-Website/modules/1346496675" target="_blank"
-                rel="noopener">
+                rel="noopener noreferrer">
                 <div class="behance-thumb">
                     <img src="Screenshot 2026-05-30 212651.png" alt="Car Showroom Website">
                     <div class="behance-badge">Bē</div>
@@ -1755,9 +1714,10 @@
                 <div class="footer-socials">
                     <a href="mailto:sridhar240604@gmail.com" class="footer-social-link email-link">✉️
                         sridhar240604@gmail.com</a>
-                    <a href="https://www.linkedin.com/in/sri-dhar-4983b7293" target="_blank"
+                    <a href="https://www.linkedin.com/in/sri-dhar-4983b7293" target="_blank" rel="noopener noreferrer"
                         class="footer-social-link linkedin-link">💼 LinkedIn</a>
-                    <a href="https://www.behance.net/sridhar40" target="_blank" class="footer-social-link">Bē
+                    <a href="https://www.behance.net/sridhar40" target="_blank" rel="noopener noreferrer"
+                        class="footer-social-link">Bē
                         Behance</a>
                     <a href="#home" class="footer-social-link">↑</a>
                 </div>
@@ -1766,12 +1726,6 @@
     </footer>
 
     <script>
-        // CURSOR
-        const ring = document.getElementById('cursor-ring'), dot = document.getElementById('cursor-dot');
-        let mx = window.innerWidth / 2, my = window.innerHeight / 2, rx = mx, ry = my;
-        document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx + 'px'; dot.style.top = my + 'px' });
-        (function animRing() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animRing) })();
-
         // BACKGROUND CANVAS
         (function () {
             const canvas = document.getElementById('bg-canvas'), ctx = canvas.getContext('2d');
@@ -1862,9 +1816,8 @@
             { src: 'perfume-post.png', label: 'Perfume – Product Poster', num: 'PS · 07' },
             { src: 'sprite.png', label: 'Sprite – Stay Cool Beverage Ad', num: 'PS · 08' },
             { src: 'yellow-car.png', label: 'Chevrolet Camaro – Automotive Poster', num: 'PS · 09' },
-            { src: 'taask-10.jpg', label: 'Account Manager – Internship Poster', num: 'PS · 09' },
-            { src: 'task001.jpg', label: 'Professional Graphic Designer – Ad', num: 'PS · 10' },
-            { src: 'yellow-car.png', label: 'Chevrolet Camaro – Automotive Poster', num: 'PS · 11' },
+            { src: 'taask-10.jpg', label: 'Account Manager – Internship Poster', num: 'PS · 10' },
+            { src: 'task001.jpg', label: 'Professional Graphic Designer – Ad', num: 'PS · 11' },
             { src: 'TASK-33.jpg', label: 'Fashion Collection – Editorial Poster', num: 'PS · 12' },
         ];
         const carousel = document.getElementById('carousel');
@@ -1880,7 +1833,7 @@
         let projLbCurrent = 0;
         const plb = document.getElementById('proj-lightbox'), plbImg = document.getElementById('proj-lightbox-img'), plbLbl = document.getElementById('proj-lightbox-label'), plbCounter = document.getElementById('proj-lb-counter');
         function openProjLightbox(idx) { projLbCurrent = idx; updateProjLb(); plb.classList.add('active'); document.body.style.overflow = 'hidden' }
-        function closeProjLightbox() { plb.classList.remove('active'); document.body.style.overflow = 'active' }
+        function closeProjLightbox() { plb.classList.remove('active'); document.body.style.overflow = '' }
         function updateProjLb() { plbImg.src = projData[projLbCurrent].src; plbLbl.textContent = projData[projLbCurrent].label; plbCounter.textContent = (projLbCurrent + 1) + ' / ' + projData.length }
         function projLbNav(dir) { projLbCurrent = (projLbCurrent + dir + projData.length) % projData.length; plbImg.style.animation = 'none'; plbImg.offsetHeight; plbImg.style.animation = ''; updateProjLb() }
         plb.addEventListener('click', function (e) { if (e.target === this) closeProjLightbox() });
